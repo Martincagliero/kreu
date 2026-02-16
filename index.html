@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krautermeister - Origen y carácter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="cursor" aria-hidden="true"></div>
+
+  <div id="preloader" class="preloader" aria-live="polite">
+    <div class="preloader__wrap">
+      <div class="preloader__bottle" role="img" aria-label="Botella minimalista">
+        <svg viewBox="0 0 120 320" class="bottle" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="liquidGradient" x1="0" x2="0" y1="1" y2="0">
+              <stop offset="0" stop-color="#1b3a2b" />
+              <stop offset="1" stop-color="#2a4f3c" />
+            </linearGradient>
+            <filter id="liquidGlow" x="-60%" y="-60%" width="220%" height="220%">
+              <feGaussianBlur stdDeviation="6" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+          <path class="bottle-outline" d="M48 12h24v26c0 6 4 10 8 12 8 4 14 12 14 22v188c0 22-18 40-40 40s-40-18-40-40V72c0-10 6-18 14-22 4-2 8-6 8-12V12z" />
+          <rect class="bottle-liquid" x="24" y="268" width="72" height="0" rx="10" ry="10" />
+          <path class="bottle-neck" d="M48 12h24v26c0 6 4 10 8 12 2 1 4 2 6 4H34c2-2 4-3 6-4 4-2 8-6 8-12V12z" />
+        </svg>
+      </div>
+      <div class="preloader__percent">
+        <span id="loaderValue">0%</span>
+      </div>
+      <p class="preloader__label">Destilando un ritual oscuro</p>
+    </div>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <div class="logo">
+        <img src="logo.png" alt="Krautermeister" class="logo__img" />
+        <span>KRAUTERMEISTER</span>
+      </div>
+      <nav class="nav">
+        <a href="#origen">Origen</a>
+        <a href="#bottle">Botella</a>
+        <a href="#editorial">Editorial</a>
+        <a href="#ritual">Ritual</a>
+      </nav>
+      <button class="nav-cta">Reservar</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="origen">
+      <div class="hero__video">
+        <video autoplay muted loop playsinline preload="auto" poster="">
+          <source src="video.mp4" type="video/mp4" />
+        </video>
+        <div class="hero__overlay"></div>
+      </div>
+      <div class="hero__content">
+        <p class="eyebrow">Licor argentino de autor</p>
+        <h1 class="hero__title">
+          ORIGEN Y CARÁCTER<br />
+          OSCURO.<br />
+          <span class="accent">HERBAL</span>.<br />
+          INOLVIDABLE.
+        </h1>
+        <p class="hero__text">Un perfil herbal profundo, afinado con paciencia europea y alma patagónica.</p>
+        <div class="hero__actions">
+          <button class="btn primary">Descubrir</button>
+          <button class="btn ghost">Ver origen</button>
+        </div>
+      </div>
+      <div class="hero__glow"></div>
+    </section>
+
+    <section class="bottle-section" id="bottle">
+      <div class="bottle-section__text reveal">
+        <h2 class="section-title">La botella como amuleto</h2>
+        <p>Una silueta que no busca llamar, sino atraer. Oscura, serena, con un brillo sutil que revela su esencia.</p>
+      </div>
+      <div class="bottle-stage">
+        <div class="bottle-blob"></div>
+        <img src="bottle.png" alt="Botella Krautermeister" class="bottle-img reveal" />
+      </div>
+    </section>
+
+    <section class="editorial" id="editorial">
+      <div class="editorial__bg"></div>
+      <div class="editorial__noise" aria-hidden="true"></div>
+      <div class="editorial__watermark" aria-hidden="true">
+        <img src="logo.png" alt="" />
+      </div>
+
+      <div class="editorial__intro">
+        <h2 class="section-title editorial__title">
+          <span class="editorial__line">Editorial</span>
+          <span class="editorial__line">herbal</span>
+        </h2>
+        <p class="editorial__subtitle">Fragmentos visuales, texturas y sombras que hablan del origen y carácter.</p>
+      </div>
+
+      <div class="editorial__flow">
+        <article class="editorial__block block--left">
+          <div class="editorial__media clip-animate clip-a" data-depth="0.18">
+            <img src="kreu1.jpg" alt="Bosque herbal" />
+            <span class="editorial__veil"></span>
+            <span class="editorial__sweep"></span>
+          </div>
+          <div class="editorial__copy">
+            <h3>La penumbra del bosque</h3>
+            <p>Notas verdes, musgo oscuro y una calma que sugiere tiempo. El misterio nace en silencio.</p>
+          </div>
+        </article>
+
+        <article class="editorial__block block--right">
+          <div class="editorial__copy">
+            <h3>Destilado con paciencia</h3>
+            <p>Botánicos seleccionados, maceración lenta y una alquimia precisa de amargos y dulces.</p>
+          </div>
+          <div class="editorial__media clip-animate clip-b tilt-right" data-depth="0.12">
+            <img src="kreu2.jpg" alt="Destilado" />
+            <span class="editorial__veil"></span>
+            <span class="editorial__sweep"></span>
+          </div>
+        </article>
+
+        <div class="editorial__fragment">
+          <div class="fragment__piece clip-animate clip-c" data-depth="0.2">
+            <img src="kreu3.webp" alt="Botánicos" />
+            <span class="editorial__veil"></span>
+          </div>
+          <div class="fragment__piece clip-animate clip-d" data-depth="0.08">
+            <img src="kreu4.jpg" alt="Sombra" />
+            <span class="editorial__veil"></span>
+          </div>
+          <div class="fragment__text">
+            <h3>Fragmentos de sombra</h3>
+            <p>Dos cortes del mismo relato, ensamblados como ritual. Cada pieza aporta profundidad.</p>
+          </div>
+        </div>
+
+        <div class="editorial__fullscreen">
+          <div class="editorial__fullscreen-media" data-depth="0.06">
+            <img src="kreu4.jpg" alt="Luz sobre botanicos" />
+            <span class="editorial__veil"></span>
+          </div>
+          <div class="editorial__fullscreen-text">
+            <h3>Un plano extendido</h3>
+            <p>La luz cae despacio. El perfil herbal se abre y se queda, como un recuerdo europeo.</p>
+          </div>
+        </div>
+
+        <article class="editorial__block block--left">
+          <div class="editorial__media clip-animate clip-e tilt-left" data-depth="0.14">
+            <img src="kreu1.jpg" alt="Textura" />
+            <span class="editorial__veil"></span>
+            <span class="editorial__sweep"></span>
+          </div>
+          <div class="editorial__copy">
+            <h3>Final largo, memoria viva</h3>
+            <p>Una estética sobria que respira. Oscura, herbal, inolvidable.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="ritual" id="ritual">
+      <div class="ritual__content reveal">
+        <h2 class="section-title">Ritual nocturno</h2>
+        <p>La experiencia Krautermeister invita a bajar el ritmo. Sabor oscuro, final largo, memoria persistente.</p>
+        <button class="btn primary">Agendar cata</button>
+      </div>
+      <div class="watermark">
+        <img src="logo.png" alt="Krautermeister" class="watermark__logo" />
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>2026 Krautermeister. Buenos Aires.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
