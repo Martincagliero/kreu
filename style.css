@@ -358,7 +358,7 @@ section {
 .editorial {
   background: var(--bg-secondary);
   position: relative;
-  padding: 140px 8vw 180px;
+  padding: 160px 10vw 200px;
   overflow: hidden;
 }
 
@@ -423,7 +423,7 @@ section {
 .editorial__flow {
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  gap: 140px;
   position: relative;
   z-index: 2;
 }
@@ -437,18 +437,22 @@ section {
 
 .block--left .editorial__media {
   grid-column: 1 / span 7;
+  margin-left: -2vw;
 }
 
 .block--left .editorial__copy {
   grid-column: 9 / span 4;
+  margin-right: 1vw;
 }
 
 .block--right .editorial__media {
   grid-column: 7 / span 6;
+  margin-right: -2vw;
 }
 
 .block--right .editorial__copy {
   grid-column: 1 / span 5;
+  margin-left: 1vw;
 }
 
 .editorial__copy h3 {
@@ -468,7 +472,7 @@ section {
   position: relative;
   overflow: hidden;
   background: rgba(11, 28, 20, 0.6);
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
 }
 
 .editorial__media {
@@ -506,6 +510,7 @@ section {
   background: linear-gradient(120deg, transparent, rgba(255, 122, 0, 0.18), transparent);
   opacity: 0;
   z-index: 1;
+  mix-blend-mode: screen;
 }
 
 .clip-a {
@@ -554,7 +559,7 @@ section {
 
 .fragment__piece:nth-child(2) {
   grid-column: 7 / span 4;
-  margin-top: 30px;
+  margin-top: 40px;
 }
 
 .fragment__text {
@@ -579,6 +584,7 @@ section {
   display: grid;
   place-items: center;
   overflow: hidden;
+  margin: 10vh 0;
 }
 
 .editorial__fullscreen-media {

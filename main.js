@@ -182,6 +182,19 @@ if (window.gsap) {
       });
     }
 
+    gsap.fromTo(media, {
+      scale: 0.98
+    }, {
+      scale: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: media,
+        start: "top bottom",
+        end: "bottom center",
+        scrub: true
+      }
+    });
+
     if (media.classList.contains("clip-animate")) {
       const targetClip = getComputedStyle(media).clipPath;
       if (targetClip === "none") {
