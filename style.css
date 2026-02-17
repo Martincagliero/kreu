@@ -2042,6 +2042,9 @@ section {
   font-size: 12px;
   letter-spacing: 2px;
   color: var(--muted);
+  position: relative;
+  z-index: 100;
+  background: var(--bg-main);
 }
 
 .reveal {
