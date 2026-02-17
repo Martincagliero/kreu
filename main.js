@@ -344,3 +344,171 @@ if (window.gsap) {
   }
 }
 
+/* ===== THREE.JS 3D BOTTLE SECTION ===== */
+
+const initModel3D = () => {
+  const canvas = document.getElementById("prestige-canvas");
+  const posterElement = document.getElementById("posterElement");
+  const viewer = document.querySelector(".premium-section__viewer");
+
+  if (!canvas || !viewer) return;
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(
+    45,
+    viewer.clientWidth / viewer.clientHeight,
+    0.1,
+    1000
+  );
+  const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    antialias: true,
+    alpha: true,
+    powerPreference: "high-performance"
+  });
+
+  renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFShadowShadowMap;
+  renderer.setClearColor(0x000000, 0);
+
+  camera.position.z = 3.5;
+
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambientLight);
+
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1.2);
+  directionalLight.position.set(5, 8, 5);
+  directionalLight.castShadow = true;
+  directionalLight.shadow.mapSize.width = 2048;
+  directionalLight.shadow.mapSize.height = 2048;
+  directionalLight.shadow.camera.far = 50;
+  scene.add(directionalLight);
+
+  const accentLight = new THREE.PointLight(0xff7a00, 0.8, 15);
+  accentLight.position.set(3, 2, 4);
+  scene.add(accentLight);
+
+  // Load model
+  const loader = new THREE.GLTFLoader();
+  let model = null;
+
+  loader.load("model.glb", (gltf) => {
+    model = gltf.scene;
+    model.traverse((node) => {
+      if (node.isMesh) {
+        node.castShadow = true;
+        node.receiveShadow = true;
+        if (node.material) {
+          node.material.envMapIntensity = 1.2;
+        }
+      }
+    });
+
+    scene.add(model);
+
+    // Auto-rotate
+    gsap.to(model.rotation, {
+      y: Math.PI * 2,
+      duration: 8,
+      repeat: -1,
+      ease: "none"
+    });
+
+    // Fade out poster
+    gsap.to(posterElement, {
+      opacity: 0,
+      duration: 0.8,
+      pointerEvents: "none"
+    });
+
+    canvas.classList.add("loaded");
+  });
+
+  // OrbitControls
+  const controls = new THREE.OrbitControls(camera, canvas);
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.05;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 4;
+  controls.enableZoom = true;
+  controls.minDistance = 2;
+  controls.maxDistance = 6;
+  controls.enablePan = false;
+
+  // Scroll animation
+  const section = document.querySelector(".premium-section");
+  let scrollRotation = 0;
+
+  if (window.gsap && window.ScrollTrigger) {
+    gsap.to(model ? model.rotation : {}, {
+      y: model ? model.rotation.y + Math.PI * 4 : 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 40%",
+        end: "bottom 40%",
+        scrub: 1,
+        onUpdate: (self) => {
+          scrollRotation = self.progress * Math.PI * 2;
+        }
+      }
+    });
+  }
+
+  // Render loop
+  const animate = () => {
+    requestAnimationFrame(animate);
+    controls.update();
+    renderer.render(scene, camera);
+  };
+
+  animate();
+
+  // Handle resize
+  const handleResize = () => {
+    const width = viewer.clientWidth;
+    const height = viewer.clientHeight;
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+    renderer.setSize(width, height);
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  return () => {
+    window.removeEventListener("resize", handleResize);
+  };
+};
+
+// Lazy load with Intersection Observer
+const initModel3DWithIntersectionObserver = () => {
+  const viewer = document.querySelector(".premium-section__viewer");
+  if (!viewer) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !window.model3DInitialized) {
+        window.model3DInitialized = true;
+        initModel3D();
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.3
+  });
+
+  observer.observe(viewer);
+};
+
+// Initialize when visible
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initModel3DWithIntersectionObserver);
+} else {
+  initModel3DWithIntersectionObserver();
+}
+
+
