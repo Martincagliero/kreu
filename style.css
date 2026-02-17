@@ -416,7 +416,7 @@ button {
   text-align: center;
   z-index: 2;
   display: grid;
-  padding-top: 200px;
+  padding-top: 320px;
   gap: 28px;
 }
 
@@ -424,7 +424,7 @@ button {
   text-transform: uppercase;
   letter-spacing: 4px;
   font-size: 13px;
-  margin-top: 80px;
+  margin-top: 120px;
   color: var(--muted);
   opacity: 0.9;
 }
@@ -2197,6 +2197,14 @@ section {
 
   .hero__title {
     font-size: clamp(24px, 5vw, 42px);
+  }
+
+  .hero__content {
+    padding-top: 280px;
+  }
+
+  .eyebrow {
+    margin-top: 100px;
   }
 
   .hero__text {
