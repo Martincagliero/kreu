@@ -24,9 +24,12 @@ El proyecto requiere visualización 3D de un producto (botella 3D) con animacion
 VERIFICACIÓN:
 Ejecutar el siguiente script en PowerShell para confirmar que están desbloqueados:
 
-powershell -ExecutionPolicy Bypass -File test-cdns.ps1
+powershell -ExecutionPolicy Bypass -File test-cdns.txt
 
-(El script está disponible en: c:\Users\Marti\OneDrive\Documentos\kreu\test-cdns.ps1)
+(El script está disponible en: c:\Users\Marti\OneDrive\Documentos\kreu\)
+
+NOTA: El archivo se envía como test-cdns.txt (renombrado de .ps1 para evitar bloqueos de email).
+Para ejecutarlo, simplemente copia el contenido en PowerShell o guárdalo como .ps1 antes de ejecutar.
 
 ALTERNATIVAS:
 Si los CDNs no pueden desbloquearse, la página funcionará en modo offline con una botella 3D dibujada en WebGL puro (sin dependencias externas).
@@ -38,5 +41,9 @@ Para consultas sobre este proyecto, contactar a: [tu nombre/email]
 
 DOCUMENTACIÓN TÉCNICA DISPONIBLE:
 📄 CDN_REQUEST_FOR_IT.md - Detalles completos   
-🔧 test-cdns.ps1 - Script de verificación
+🔧 test-cdns.txt - Script de verificación (renombrado de .ps1 para email)
 🌐 https://github.com/Martincagliero/kreu - Repositorio del proyecto
+
+ALTERNATIVA SI NO PUEDE DESCARGAR:
+Si tienes problemas al descargar test-cdns.txt, el script está disponible aquí:
+https://raw.githubusercontent.com/Martincagliero/kreu/main/test-cdns.ps1
