@@ -124,6 +124,40 @@ if (window.gsap) {
     });
   });
 
+  // Mystical bottle section animations
+  gsap.utils.toArray(".mystical-word").forEach((word, index) => {
+    gsap.from(word, {
+      opacity: 0,
+      y: 12,
+      duration: 0.6,
+      ease: "power2.out",
+      delay: 0.3 + index * 0.08,
+      scrollTrigger: {
+        trigger: ".bottle-section__text",
+        start: "top 75%",
+        once: false
+      }
+    });
+  });
+
+  // Mystical keyword color sync with scroll
+  gsap.to(".mystical-keyword", {
+    scrollTrigger: {
+      trigger: ".bottle-section",
+      start: "top 50%",
+      end: "bottom 50%",
+      scrub: 1,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        gsap.utils.toArray(".mystical-keyword").forEach((keyword) => {
+          const hue = 30 + progress * 15;
+          const brightness = 1 + Math.sin(progress * Math.PI * 2) * 0.15;
+          keyword.style.filter = `drop-shadow(0 0 ${8 + progress * 8}px rgba(255, 122, 0, ${0.3 + progress * 0.3})) brightness(${brightness})`;
+        });
+      }
+    }
+  });
+
   gsap.to(".bottle-img", {
     y: -12,
     duration: 3.2,
