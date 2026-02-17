@@ -426,7 +426,7 @@ button {
 
 .hero__title {
   font-family: "Playfair Display", serif;
-  font-size: clamp(32px, 5vw, 78px);
+  font-size: clamp(26px, 4vw, 64px);
   line-height: 1.18;
   letter-spacing: 2.4px;
 }
