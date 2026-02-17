@@ -346,7 +346,7 @@ button {
 
 .hero__brand-logo {
   position: absolute;
-  top: 85px;
+  top: 80px;
   left: 50%;
   transform: translateX(-50%) scale(0.85);
   z-index: 2;
@@ -356,7 +356,7 @@ button {
 }
 
 .hero__brand-logo img {
-  width: clamp(480px, 38vw, 750px);
+  width: clamp(500px, 40vw, 800px);
   height: auto;
   display: block;
   filter: drop-shadow(0 12px 35px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 35px rgba(255, 122, 0, 0.45)) drop-shadow(0 0 70px rgba(255, 122, 0, 0.25));
@@ -364,31 +364,31 @@ button {
 
 @media (max-width: 1024px) {
   .hero__brand-logo {
-    top: 90px;
+    top: 85px;
   }
 
   .hero__brand-logo img {
-    width: clamp(400px, 52vw, 640px);
+    width: clamp(420px, 55vw, 680px);
   }
 }
 
 @media (max-width: 768px) {
   .hero__brand-logo {
-    top: 95px;
+    top: 90px;
   }
 
   .hero__brand-logo img {
-    width: clamp(340px, 56vw, 560px);
+    width: clamp(360px, 60vw, 600px);
   }
 }
 
 @media (max-width: 520px) {
   .hero__brand-logo {
-    top: 85px;
+    top: 80px;
   }
 
   .hero__brand-logo img {
-    width: clamp(300px, 58vw, 500px);
+    width: clamp(320px, 60vw, 520px);
   }
 }
 
@@ -416,22 +416,22 @@ button {
   text-align: center;
   z-index: 2;
   display: grid;
-  padding-top: 240px;
-  gap: 32px;
+  padding-top: 220px;
+  gap: 30px;
 }
 
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 4px;
-  font-size: 15px;
-  margin-top: 75px;
+  font-size: 13px;
+  margin-top: 65px;
   color: var(--muted);
   opacity: 0.9;
 }
 
 .hero__title {
   font-family: "Playfair Display", serif;
-  font-size: clamp(32px, 5vw, 65px);
+  font-size: clamp(28px, 4vw, 52px);
   line-height: 1.25;
   letter-spacing: 2px;
 }
@@ -475,7 +475,7 @@ button {
   max-width: 520px;
   margin: 0 auto;
   color: var(--muted);
-  font-size: 20px;
+  font-size: 17px;
   line-height: 1.65;
   opacity: 0;
   animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
@@ -502,15 +502,15 @@ button {
 .hero__actions {
   display: flex;
   justify-content: center;
-  gap: 22px;
+  gap: 20px;
   flex-wrap: wrap;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .btn {
-  padding: 16px 42px;
+  padding: 15px 40px;
   border-radius: 50px;
-  font-size: 15px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
@@ -2196,25 +2196,25 @@ section {
   }
 
   .hero__title {
-    font-size: clamp(28px, 6vw, 50px);
+    font-size: clamp(26px, 5.5vw, 44px);
   }
 
   .hero__content {
-    padding-top: 220px;
+    padding-top: 200px;
   }
 
   .eyebrow {
-    margin-top: 65px;
-    font-size: 14px;
+    margin-top: 55px;
+    font-size: 12px;
   }
 
   .hero__text {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .btn {
-    padding: 14px 36px;
-    font-size: 14px;
+    padding: 13px 34px;
+    font-size: 13px;
   }
 
   .navbar__inner {
