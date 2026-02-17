@@ -8,15 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <!-- Three.js & Loaders - DRACO decompression required -->
-  <script src="https://cdn.jsdelivr.net/npm/three@r128/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/loaders/GLTFLoader.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/loaders/DRACOLoader.js"></script>
-  <!-- Fallback: Local Three.js si CDN falla -->
-  <script>
-    window.THREE_LOADED = (typeof THREE !== 'undefined');
-    console.log('[Three.js] CDN loaded:', window.THREE_LOADED);
-  </script>
+  <!-- Three.js & Loaders - Load BEFORE any 3D initialization -->
+  <script src="three.min.js"></script>
+  <script src="GLTFLoader.js"></script>
+  <script src="DRACOLoader.js"></script>
 </head>
 <body>
   <div class="cursor" aria-hidden="true"></div>
@@ -236,23 +231,24 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.0/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.0/dist/ScrollTrigger.min.js"></script>
   
-  <!-- Three.js 3D Bottle Initialization -->
+  <!-- 3D Bottle Initialization - ROBUST VERSION -->
   <script>
-    function init3DBottle() {
+    window.addEventListener('load', () => {
+      console.log('📄 Page loaded. Initializing 3D bottle...');
+      
+      // Ensure Three.js is available
       if (typeof THREE === 'undefined') {
-        console.warn('⚠️ Three.js no disponible aún. Reintentando...');
-        setTimeout(init3DBottle, 500);
+        console.error('❌ Three.js not loaded. Check local three.min.js file.');
         return;
       }
 
-      console.log('✅ Inicializando botella 3D con Three.js...');
-      
       const canvas = document.getElementById('bottle3d');
       if (!canvas) {
-        console.error('❌ Canvas #bottle3d no encontrado');
+        console.error('❌ Canvas #bottle3d not found');
         return;
       }
 
+      // 3D Scene Setup
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0x0a1410);
       
@@ -264,11 +260,15 @@
       );
       camera.position.set(0, 1.5, 4);
 
-      const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+      const renderer = new THREE.WebGLRenderer({ 
+        canvas: canvas, 
+        antialias: true, 
+        alpha: true 
+      });
       renderer.setSize(canvas.clientWidth, canvas.clientHeight);
       renderer.setPixelRatio(window.devicePixelRatio);
 
-      // Luces
+      // Lighting
       const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
       scene.add(ambientLight);
 
@@ -276,54 +276,60 @@
       directionalLight.position.set(3, 3, 3);
       scene.add(directionalLight);
 
-      // Cargar botella
+      // Load 3D Model
       const loader = new THREE.GLTFLoader();
       
-      // Configurar DRACO si está disponible
+      // Configure DRACO if available
       if (typeof THREE.DRACOLoader !== 'undefined') {
         const dracoLoader = new THREE.DRACOLoader();
-        dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@r128/examples/js/libs/draco/');
+        dracoLoader.setDecoderPath('draco/');
         loader.setDRACOLoader(dracoLoader);
-        console.log('✅ DRACOLoader configurado');
+        console.log('✅ DRACOLoader configured');
       }
 
       loader.load(
         'bottle-v1.glb',
         (gltf) => {
-          console.log('✅ bottle-v1.glb cargado exitosamente');
+          console.log('✅ bottle-v1.glb loaded successfully');
           const bottle = gltf.scene;
           bottle.scale.set(2, 2, 2);
           bottle.position.set(0, 0, 0);
           scene.add(bottle);
           
-          // Animación: Rotación continua
+          // Animation: Continuous rotation with requestAnimationFrame
+          let isAnimating = true;
+          
           function animateBottle() {
-            bottle.rotation.y += 0.005;
-            renderer.render(scene, camera);
-            requestAnimationFrame(animateBottle);
+            if (isAnimating) {
+              bottle.rotation.y += 0.005;
+              renderer.render(scene, camera);
+              requestAnimationFrame(animateBottle);
+            }
           }
           animateBottle();
           
-          // GSAP animación adicional
+          // GSAP animation for 3D bottle (animate Three.js object, not HTML elements)
           if (typeof gsap !== 'undefined') {
             gsap.to(bottle.rotation, {
-              y: Math.PI * 2,
+              y: bottle.rotation.y + Math.PI * 2,
               duration: 12,
               repeat: -1,
               ease: 'none'
             });
+            console.log('✅ GSAP 3D animation applied');
           }
         },
         (progress) => {
           const percent = Math.round((progress.loaded / progress.total) * 100);
-          console.log(`📥 Cargando: ${percent}%`);
+          console.log(`📥 Loading: ${percent}%`);
         },
         (error) => {
-          console.error('❌ Error al cargar botella:', error);
+          console.error('❌ Error loading bottle-v1.glb:', error);
+          console.warn('💡 Make sure bottle-v1.glb exists in the root directory');
         }
       );
 
-      // Resize
+      // Handle window resize
       window.addEventListener('resize', () => {
         const width = canvas.clientWidth;
         const height = canvas.clientHeight;
@@ -331,14 +337,9 @@
         camera.updateProjectionMatrix();
         renderer.setSize(width, height);
       });
-    }
 
-    // Esperar a que el DOM esté listo
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init3DBottle);
-    } else {
-      setTimeout(init3DBottle, 500);
-    }
+      console.log('✅ 3D bottle initialization complete');
+    });
   </script>
 
   <!-- Main Script (GSAP animations) -->
