@@ -258,7 +258,7 @@
         0.1,
         1000
       );
-      camera.position.set(0, 1.0, 5.8);
+      camera.position.set(0, 1.0, 5.4);
 
       const renderer = new THREE.WebGLRenderer({ 
         canvas: canvas, 
@@ -293,8 +293,8 @@
         (gltf) => {
           console.log('✅ bottle-v1.glb loaded successfully');
           const bottle = gltf.scene;
-          bottle.scale.set(0.8, 0.8, 0.8);
-          bottle.position.set(0, 0.0, 0);
+          bottle.scale.set(0.95, 0.95, 0.95);
+          bottle.position.set(0, 0.18, 0);
           scene.add(bottle);
           
           // Animation: Continuous rotation with requestAnimationFrame
