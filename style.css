@@ -437,7 +437,7 @@ button {
 .hero__tagline {
   position: absolute;
   top: 350px;
-  left: 44%;
+  left: 42%;
   transform: translateX(-50%);
   z-index: 51;
   opacity: 0;
@@ -2297,5 +2297,384 @@ section {
     .bottle-img {
       touch-action: manipulation;
     }
+  }
+}
+
+/* ========================================
+   PREMIUM EDITORIAL TEXT SYSTEM
+   ======================================== */
+
+/* Premium Title - Gigante y Bold */
+.premium-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(70px, 11vw, 180px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 2;
+}
+
+.premium-title--left {
+  text-align: left;
+  padding-left: 5vw;
+}
+
+.premium-title--center {
+  text-align: center;
+}
+
+.premium-title--right {
+  text-align: right;
+  padding-right: 5vw;
+}
+
+/* Premium Subtitle - Grande y impactante */
+.premium-subtitle {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(40px, 7vw, 90px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.premium-subtitle--left {
+  text-align: left;
+  padding-left: 3vw;
+}
+
+.premium-subtitle--center {
+  text-align: center;
+}
+
+.premium-subtitle--right {
+  text-align: right;
+  padding-right: 3vw;
+}
+
+/* Premium Copy - Texto descriptivo */
+.premium-copy {
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(18px, 2vw, 26px);
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 40px;
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+}
+
+.premium-copy--left {
+  text-align: left;
+  margin-left: 5vw;
+  margin-right: auto;
+}
+
+.premium-copy--center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.premium-copy--right {
+  text-align: right;
+  margin-left: auto;
+  margin-right: 5vw;
+}
+
+/* Premium Quote - Frases destacadas */
+.premium-quote {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(50px, 9vw, 140px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 100px auto;
+  max-width: 90%;
+  position: relative;
+  z-index: 2;
+}
+
+.premium-quote--xl {
+  font-size: clamp(60px, 10vw, 160px);
+  letter-spacing: 8px;
+}
+
+/* Word System - Con efectos premium */
+.word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(10px);
+  margin: 0 12px;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.word--accent {
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(255, 122, 0, 0.6),
+               0 0 60px rgba(255, 122, 0, 0.3);
+  filter: drop-shadow(0 0 12px rgba(255, 122, 0, 0.4));
+}
+
+.word--outline {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(245, 243, 238, 0.9);
+  text-stroke: 2px rgba(245, 243, 238, 0.9);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.word--glow {
+  color: var(--text);
+  text-shadow: 0 0 20px rgba(42, 79, 60, 0.8),
+               0 0 40px rgba(42, 79, 60, 0.5),
+               0 0 60px rgba(42, 79, 60, 0.3);
+  filter: drop-shadow(0 0 15px rgba(42, 79, 60, 0.6));
+}
+
+/* Copy Word System - Para párrafos */
+.copy-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  filter: blur(8px);
+  margin: 0 5px;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.copy-word--accent {
+  color: var(--accent);
+  font-weight: 600;
+  text-shadow: 0 0 15px rgba(255, 122, 0, 0.4);
+}
+
+.copy-word--outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245, 243, 238, 0.85);
+  text-stroke: 1px rgba(245, 243, 238, 0.85);
+  font-weight: 600;
+}
+
+.copy-word--glow {
+  color: var(--text);
+  font-weight: 600;
+  text-shadow: 0 0 12px rgba(42, 79, 60, 0.6),
+               0 0 24px rgba(42, 79, 60, 0.4);
+}
+
+/* Quote Word System */
+.quote-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(50px);
+  filter: blur(12px);
+  margin: 0 15px;
+  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.quote-word--accent {
+  color: var(--accent);
+  text-shadow: 0 0 40px rgba(255, 122, 0, 0.7),
+               0 0 80px rgba(255, 122, 0, 0.4);
+  filter: drop-shadow(0 0 20px rgba(255, 122, 0, 0.5));
+}
+
+.quote-word--outline {
+  color: transparent;
+  -webkit-text-stroke: 3px rgba(245, 243, 238, 0.9);
+  text-stroke: 3px rgba(245, 243, 238, 0.9);
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+.quote-word--glow {
+  color: var(--text);
+  text-shadow: 0 0 30px rgba(42, 79, 60, 0.9),
+               0 0 60px rgba(42, 79, 60, 0.6),
+               0 0 90px rgba(42, 79, 60, 0.4);
+  filter: drop-shadow(0 0 25px rgba(42, 79, 60, 0.7));
+}
+
+/* Animation States - GSAP will toggle these */
+.word.animate-in,
+.copy-word.animate-in,
+.quote-word.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Fondos alternados por sección */
+.bottle-section {
+  background: linear-gradient(180deg, #0a1410 0%, #0d1812 100%);
+  position: relative;
+  padding: 140px 5vw;
+  overflow: hidden;
+}
+
+.bottle-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(42, 79, 60, 0.15), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.editorial {
+  background: linear-gradient(180deg, #000000 0%, #0a0f0d 100%);
+}
+
+.editorial::before {
+  background: radial-gradient(ellipse at 70% 30%, rgba(255, 122, 0, 0.08), transparent 60%);
+}
+
+.ritual {
+  background: linear-gradient(180deg, #0d1812 0%, #0a1410 100%);
+  position: relative;
+  padding: 140px 5vw;
+  overflow: hidden;
+}
+
+.ritual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(42, 79, 60, 0.12), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .premium-title {
+    font-size: clamp(50px, 9vw, 120px);
+    letter-spacing: 6px;
+  }
+
+  .premium-subtitle {
+    font-size: clamp(32px, 6vw, 70px);
+    letter-spacing: 4px;
+  }
+
+  .premium-copy {
+    font-size: clamp(16px, 2.2vw, 22px);
+  }
+
+  .premium-quote {
+    font-size: clamp(40px, 8vw, 100px);
+    letter-spacing: 4px;
+  }
+
+  .word {
+    margin: 0 8px;
+  }
+
+  .copy-word {
+    margin: 0 4px;
+  }
+}
+
+@media (max-width: 768px) {
+  .premium-title {
+    font-size: clamp(38px, 8vw, 90px);
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+  }
+
+  .premium-title--left,
+  .premium-title--right {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .premium-subtitle {
+    font-size: clamp(28px, 5.5vw, 55px);
+    letter-spacing: 3px;
+  }
+
+  .premium-subtitle--left,
+  .premium-subtitle--right {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+  }
+
+  .premium-copy {
+    font-size: clamp(15px, 2.5vw, 19px);
+  }
+
+  .premium-copy--left,
+  .premium-copy--right {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .premium-quote {
+    font-size: clamp(32px, 7vw, 70px);
+    letter-spacing: 3px;
+    margin: 60px auto;
+  }
+
+  .word {
+    margin: 0 6px;
+  }
+
+  .word--outline {
+    -webkit-text-stroke: 1.5px rgba(245, 243, 238, 0.9);
+  }
+
+  .copy-word {
+    margin: 0 3px;
+  }
+
+  .quote-word {
+    margin: 0 8px;
+  }
+
+  .quote-word--outline {
+    -webkit-text-stroke: 2px rgba(245, 243, 238, 0.9);
+  }
+}
+
+@media (max-width: 520px) {
+  .premium-title {
+    font-size: clamp(32px, 7vw, 70px);
+    letter-spacing: 3px;
+  }
+
+  .premium-subtitle {
+    font-size: clamp(24px, 5vw, 45px);
+    letter-spacing: 2px;
+  }
+
+  .premium-copy {
+    font-size: clamp(14px, 2.8vw, 17px);
+  }
+
+  .premium-quote {
+    font-size: clamp(28px, 6.5vw, 58px);
+    letter-spacing: 2px;
+  }
+
+  .word {
+    margin: 0 4px;
+  }
+
+  .copy-word {
+    margin: 0 2px;
+  }
+
+  .quote-word {
+    margin: 0 6px;
   }
 }

@@ -589,8 +589,164 @@ const initGSAPAnimations = () => {
       }
     });
   });
-  }
-};
+
+  // ===== PREMIUM EDITORIAL ANIMATIONS =====
+  // Animaciones para títulos premium con stagger y blur-to-sharp
+  gsap.utils.toArray(".premium-title").forEach((title) => {
+    const words = title.querySelectorAll(".word");
+    
+    gsap.fromTo(words, {
+      opacity: 0,
+      y: 60,
+      filter: "blur(15px)"
+    }, {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: 1.2,
+      stagger: 0.08,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: title,
+        start: "top 85%",
+        once: false
+      }
+    });
+  });
+
+  // Animaciones para subtítulos premium
+  gsap.utils.toArray(".premium-subtitle").forEach((subtitle) => {
+    const words = subtitle.querySelectorAll(".word");
+    
+    gsap.fromTo(words, {
+      opacity: 0,
+      y: 45,
+      filter: "blur(12px)"
+    }, {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: 1,
+      stagger: 0.06,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: subtitle,
+        start: "top 85%",
+        once: false
+      }
+    });
+  });
+
+  // Animaciones para copy premium con stagger por palabra
+  gsap.utils.toArray(".premium-copy").forEach((copy) => {
+    const words = copy.querySelectorAll(".copy-word");
+    
+    gsap.fromTo(words, {
+      opacity: 0,
+      y: 25,
+      filter: "blur(10px)"
+    }, {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      duration: 0.8,
+      stagger: 0.025,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: copy,
+        start: "top 85%",
+        once: false
+      }
+    });
+  });
+
+  // Animaciones para quotes premium - más dramáticas
+  gsap.utils.toArray(".premium-quote").forEach((quote) => {
+    const words = quote.querySelectorAll(".quote-word");
+    
+    gsap.fromTo(words, {
+      opacity: 0,
+      y: 80,
+      scale: 0.9,
+      filter: "blur(18px)"
+    }, {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      duration: 1.4,
+      stagger: 0.1,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: quote,
+        start: "top 80%",
+        once: false
+      }
+    });
+  });
+
+  // Animación continua de glow en palabras con --glow
+  gsap.to(".word--glow, .copy-word--glow, .quote-word--glow", {
+    textShadow: "0 0 30px rgba(42, 79, 60, 1), 0 0 60px rgba(42, 79, 60, 0.8), 0 0 90px rgba(42, 79, 60, 0.5)",
+    duration: 2,
+    ease: "sine.inOut",
+    repeat: -1,
+    yoyo: true
+  });
+
+  // Animación continua de shimmer en palabras accent
+  gsap.to(".word--accent, .copy-word--accent, .quote-word--accent", {
+    textShadow: "0 0 50px rgba(255, 122, 0, 0.9), 0 0 100px rgba(255, 122, 0, 0.6)",
+    duration: 2.5,
+    ease: "sine.inOut",
+    repeat: -1,
+    yoyo: true
+  });
+
+  // Animación sutil de pulse en palabras outline
+  gsap.to(".word--outline, .copy-word--outline, .quote-word--outline", {
+    textShadow: "0 0 35px rgba(255, 255, 255, 0.6)",
+    duration: 3,
+    ease: "sine.inOut",
+    repeat: -1,
+    yoyo: true
+  });
+
+  // Scroll-based intensity para fondos de sección
+  gsap.to(".bottle-section::before", {
+    scrollTrigger: {
+      trigger: ".bottle-section",
+      start: "top 50%",
+      end: "bottom 50%",
+      scrub: 1.5,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const opacity = 0.15 + Math.sin(progress * Math.PI) * 0.1;
+        gsap.set(".bottle-section", {
+          opacity: opacity
+        });
+      }
+    }
+  });
+
+  gsap.to(".editorial", {
+    scrollTrigger: {
+      trigger: ".editorial",
+      start: "top 50%",
+      end: "bottom 50%",
+      scrub: 1.5,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const opacity = 0.08 + Math.sin(progress * Math.PI) * 0.05;
+        const editorialBefore = document.querySelector(".editorial::before");
+        if (editorialBefore) {
+          gsap.set(editorialBefore, { opacity: opacity });
+        }
+      }
+    }
+  });
+  } // Cierre de if (window.gsap)
+}; // Cierre de initGSAPAnimations
 
 // Ejecutar animaciones GSAP cuando el DOM esté listo
 if (document.readyState === "loading") {
@@ -598,5 +754,3 @@ if (document.readyState === "loading") {
 } else {
   initGSAPAnimations();
 }
-
-
