@@ -8,8 +8,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- Three.js & Loaders - DRACO decompression required -->
+  <script src="https://cdn.jsdelivr.net/npm/three@r128/build/three.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/loaders/DRACOLoader.js"></script>
+  <!-- Fallback: Local Three.js si CDN falla -->
+  <script>
+    window.THREE_LOADED = (typeof THREE !== 'undefined');
+    console.log('[Three.js] CDN loaded:', window.THREE_LOADED);
+  </script>
 </head>
 <body>
   <div class="cursor" aria-hidden="true"></div>
@@ -225,8 +232,116 @@
     <p>2026 Krautermeister. Buenos Aires.</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.0/dist/ScrollTrigger.min.js"></script>
+  
+  <!-- Three.js 3D Bottle Initialization -->
+  <script>
+    function init3DBottle() {
+      if (typeof THREE === 'undefined') {
+        console.warn('⚠️ Three.js no disponible aún. Reintentando...');
+        setTimeout(init3DBottle, 500);
+        return;
+      }
+
+      console.log('✅ Inicializando botella 3D con Three.js...');
+      
+      const canvas = document.getElementById('bottle3d');
+      if (!canvas) {
+        console.error('❌ Canvas #bottle3d no encontrado');
+        return;
+      }
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0a1410);
+      
+      const camera = new THREE.PerspectiveCamera(
+        35,
+        canvas.clientWidth / canvas.clientHeight,
+        0.1,
+        1000
+      );
+      camera.position.set(0, 1.5, 4);
+
+      const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+
+      // Luces
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
+
+      const directionalLight = new THREE.DirectionalLight(0xff9944, 0.8);
+      directionalLight.position.set(3, 3, 3);
+      scene.add(directionalLight);
+
+      // Cargar botella
+      const loader = new THREE.GLTFLoader();
+      
+      // Configurar DRACO si está disponible
+      if (typeof THREE.DRACOLoader !== 'undefined') {
+        const dracoLoader = new THREE.DRACOLoader();
+        dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@r128/examples/js/libs/draco/');
+        loader.setDRACOLoader(dracoLoader);
+        console.log('✅ DRACOLoader configurado');
+      }
+
+      loader.load(
+        'bottle-v1.glb',
+        (gltf) => {
+          console.log('✅ bottle-v1.glb cargado exitosamente');
+          const bottle = gltf.scene;
+          bottle.scale.set(2, 2, 2);
+          bottle.position.set(0, 0, 0);
+          scene.add(bottle);
+          
+          // Animación: Rotación continua
+          function animateBottle() {
+            bottle.rotation.y += 0.005;
+            renderer.render(scene, camera);
+            requestAnimationFrame(animateBottle);
+          }
+          animateBottle();
+          
+          // GSAP animación adicional
+          if (typeof gsap !== 'undefined') {
+            gsap.to(bottle.rotation, {
+              y: Math.PI * 2,
+              duration: 12,
+              repeat: -1,
+              ease: 'none'
+            });
+          }
+        },
+        (progress) => {
+          const percent = Math.round((progress.loaded / progress.total) * 100);
+          console.log(`📥 Cargando: ${percent}%`);
+        },
+        (error) => {
+          console.error('❌ Error al cargar botella:', error);
+        }
+      );
+
+      // Resize
+      window.addEventListener('resize', () => {
+        const width = canvas.clientWidth;
+        const height = canvas.clientHeight;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      });
+    }
+
+    // Esperar a que el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init3DBottle);
+    } else {
+      setTimeout(init3DBottle, 500);
+    }
+  </script>
+
+  <!-- Main Script (GSAP animations) -->
   <script src="main.js"></script>
 </body>
 </html>
