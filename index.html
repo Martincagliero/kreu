@@ -253,12 +253,12 @@
       scene.background = new THREE.Color(0x0a1410);
       
       const camera = new THREE.PerspectiveCamera(
-        28,
+        26,
         canvas.clientWidth / canvas.clientHeight,
         0.1,
         1000
       );
-      camera.position.set(0, 1.0, 5.4);
+      camera.position.set(0, 1.0, 6.2);
 
       const renderer = new THREE.WebGLRenderer({ 
         canvas: canvas, 
@@ -293,8 +293,8 @@
         (gltf) => {
           console.log('✅ bottle-v1.glb loaded successfully');
           const bottle = gltf.scene;
-          bottle.scale.set(0.95, 0.95, 0.95);
-          bottle.position.set(0, 0.18, 0);
+          bottle.scale.set(0.9, 0.9, 0.9);
+          bottle.position.set(0, 0.35, 0);
           scene.add(bottle);
           
           // Animation: Continuous rotation with requestAnimationFrame
