@@ -1,0 +1,42 @@
+ASUNTO: SOLICITUD URGENTE - Desbloquear CDNs para proyecto Krautermeister
+PRIORIDAD: ALTA
+FECHA: 17 de febrero de 2026
+
+---
+
+ESTIMADO EQUIPO IT,
+
+Solicito desbloquear los siguientes dominios para el proyecto web "Krautermeister" (visualización 3D interactiva):
+
+DOMINIOS A PERMITIR (CRÍTICO):
+✓ cdn.jsdelivr.net
+✓ raw.githubusercontent.com  
+✓ unpkg.com (alternativa)
+
+LIBRERÍAS ESPECÍFICAS QUE SE CARGAN:
+- Three.js v128 (motor de renderizado 3D)
+- GLTFLoader + DRACOLoader (carga de modelos 3D .glb)
+- GSAP v3.14.0 (animaciones web)
+
+JUSTIFICACIÓN:
+El proyecto requiere visualización 3D de un producto (botella 3D) con animaciones interactivas. Sin estos CDNs, la página no puede cargar las librerías necesarias.
+
+VERIFICACIÓN:
+Ejecutar el siguiente script en PowerShell para confirmar que están desbloqueados:
+
+powershell -ExecutionPolicy Bypass -File test-cdns.ps1
+
+(El script está disponible en: c:\Users\Marti\OneDrive\Documentos\kreu\test-cdns.ps1)
+
+ALTERNATIVAS:
+Si los CDNs no pueden desbloquearse, la página funcionará en modo offline con una botella 3D dibujada en WebGL puro (sin dependencias externas).
+
+CONTACTO:
+Para consultas sobre este proyecto, contactar a: [tu nombre/email]
+
+---
+
+DOCUMENTACIÓN TÉCNICA DISPONIBLE:
+📄 CDN_REQUEST_FOR_IT.md - Detalles completos   
+🔧 test-cdns.ps1 - Script de verificación
+🌐 https://github.com/Martincagliero/kreu - Repositorio del proyecto
