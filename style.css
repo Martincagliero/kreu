@@ -356,7 +356,7 @@ button {
 }
 
 .hero__brand-logo img {
-  width: clamp(160px, 20vw, 260px);
+  width: clamp(220px, 28vw, 380px);
   height: auto;
   display: block;
   filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 14px rgba(255, 122, 0, 0.2));
@@ -368,7 +368,7 @@ button {
   }
 
   .hero__brand-logo img {
-    width: clamp(170px, 28vw, 300px);
+    width: clamp(220px, 40vw, 420px);
   }
 }
 
@@ -378,7 +378,7 @@ button {
   }
 
   .hero__brand-logo img {
-    width: clamp(170px, 44vw, 280px);
+    width: clamp(220px, 50vw, 380px);
   }
 }
 
@@ -388,7 +388,7 @@ button {
   }
 
   .hero__brand-logo img {
-    width: clamp(160px, 50vw, 240px);
+    width: clamp(200px, 58vw, 320px);
   }
 }
 
