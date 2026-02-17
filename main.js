@@ -78,14 +78,36 @@ window.addEventListener("scroll", () => {
 if (window.gsap) {
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.from(".hero__content > *", {
-    opacity: 0,
-    y: 30,
-    filter: "blur(8px)",
-    duration: 1.2,
-    stagger: 0.12,
-    ease: "power2.out",
-    delay: 0.2
+  const heroTimeline = gsap.timeline({
+    defaults: { ease: "power3.out" }
+  });
+
+  heroTimeline
+    .from([".eyebrow", ".hero__text", ".hero__actions"], {
+      opacity: 0,
+      y: 20,
+      duration: 1.1,
+      stagger: 0.1
+    }, 0)
+    .from(".hero__line", {
+      opacity: 0,
+      y: 26,
+      duration: 1.2,
+      stagger: 0.12
+    }, 0.1)
+    .from(".hero__line--accent", {
+      opacity: 0,
+      y: 30,
+      duration: 1.3,
+      delay: 0.2
+    }, ">-0.2");
+
+  gsap.to(".hero__video video", {
+    scale: 1.05,
+    duration: 18,
+    ease: "none",
+    repeat: -1,
+    yoyo: true
   });
 
   gsap.utils.toArray(".reveal").forEach((el) => {
