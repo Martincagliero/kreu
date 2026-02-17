@@ -4,26 +4,47 @@ const bottleLiquid = document.querySelector(".bottle-liquid");
 const navbar = document.getElementById("navbar");
 const cursor = document.querySelector(".cursor");
 
-let loadProgress = 0;
-
-const updatePreloader = () => {
-  loadProgress += 1;
-  const height = Math.min(loadProgress, 100) * 2.2;
+const updateLiquid = (value) => {
+  const clamped = Math.min(Math.max(value, 0), 100);
+  const height = clamped * 2.2;
   bottleLiquid.setAttribute("y", `${268 - height}`);
   bottleLiquid.setAttribute("height", `${height}`);
-  loaderValue.textContent = `${loadProgress}%`;
-
-  if (loadProgress >= 100) {
-    bottleLiquid.style.filter = "url(#liquidGlow) drop-shadow(0 0 12px rgba(255,122,0,0.6))";
-    setTimeout(() => {
-      preloader.classList.add("hide");
-      preloader.addEventListener("transitionend", () => preloader.remove());
-    }, 400);
-    clearInterval(loaderTimer);
-  }
+  loaderValue.textContent = `${Math.round(clamped)}%`;
 };
 
-const loaderTimer = setInterval(updatePreloader, 26);
+const finishPreloader = () => {
+  preloader.classList.add("hide");
+  preloader.addEventListener("transitionend", () => preloader.remove());
+};
+
+if (window.gsap) {
+  const progress = { value: 0 };
+  gsap.timeline({
+    defaults: { ease: "power3.out" }
+  })
+    .to(".preloader__wrap", { opacity: 1, duration: 0.6 })
+    .to(progress, {
+      value: 100,
+      duration: 2.6,
+      onUpdate: () => updateLiquid(progress.value)
+    }, "<")
+    .to(".bottle-liquid", {
+      filter: "url(#liquidGlow) drop-shadow(0 0 16px rgba(255,122,0,0.55))",
+      duration: 0.8
+    }, "-=0.4")
+    .to(".preloader__wrap", { opacity: 0, duration: 0.6 }, "+=0.2")
+    .add(() => finishPreloader());
+} else {
+  let loadProgress = 0;
+  const loaderTimer = setInterval(() => {
+    loadProgress += 1;
+    updateLiquid(loadProgress);
+    if (loadProgress >= 100) {
+      clearInterval(loaderTimer);
+      setTimeout(finishPreloader, 400);
+    }
+  }, 28);
+}
 
 window.addEventListener("scroll", () => {
   navbar.classList.toggle("scrolled", window.scrollY > 20);

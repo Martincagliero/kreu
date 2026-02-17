@@ -62,6 +62,7 @@ button {
   z-index: 999;
   overflow: hidden;
   transition: opacity 0.6s ease, visibility 0.6s ease;
+  background-image: radial-gradient(circle at 50% 20%, rgba(16, 39, 28, 0.25), rgba(8, 14, 12, 0.95));
 }
 
 .preloader.hide {
@@ -75,6 +76,7 @@ button {
   gap: 18px;
   align-items: center;
   justify-items: center;
+  opacity: 0;
 }
 
 .preloader__bottle {
@@ -91,6 +93,8 @@ button {
   fill: none;
   stroke: rgba(245, 243, 238, 0.4);
   stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .bottle-neck {
@@ -101,11 +105,13 @@ button {
   fill: url(#liquidGradient);
   filter: url(#liquidGlow);
   transform-origin: bottom;
+  transition: filter 0.4s ease;
 }
 
 .preloader__percent {
   font-size: 28px;
   letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
 }
 
 .preloader__label {
