@@ -260,15 +260,16 @@ if (window.gsap) {
     }
   });
 
-  gsap.from(".editorial__line", {
+  // Enhanced Editorial Section Animations
+  gsap.from(".editorial__line-animated", {
     yPercent: 120,
     opacity: 0,
-    duration: 1.1,
-    stagger: 0.12,
+    duration: 0.9,
+    stagger: 0.15,
     ease: "power3.out",
     scrollTrigger: {
       trigger: ".editorial__intro",
-      start: "top 80%"
+      start: "top 85%"
     }
   });
 
@@ -276,14 +277,33 @@ if (window.gsap) {
     opacity: 0,
     y: 18,
     filter: "blur(8px)",
-    duration: 1,
+    duration: 0.9,
     ease: "power3.out",
     scrollTrigger: {
       trigger: ".editorial__intro",
-      start: "top 80%"
+      start: "top 85%",
+      delay: 0.2
     }
   });
 
+  // Keyword highlight glow sync with scroll
+  gsap.to(".keyword-highlight", {
+    scrollTrigger: {
+      trigger: ".editorial__intro",
+      start: "top 80%",
+      end: "bottom 50%",
+      scrub: 1.2,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        gsap.utils.toArray(".keyword-highlight").forEach((keyword) => {
+          const glowIntensity = 3 + progress * 8;
+          keyword.style.filter = `drop-shadow(0 0 ${glowIntensity}px rgba(255, 122, 0, ${0.2 + progress * 0.4}))`;
+        });
+      }
+    }
+  });
+
+  // Watermark rotation parallax
   gsap.to(".editorial__watermark img", {
     rotate: 2,
     opacity: 0.03,
@@ -296,6 +316,125 @@ if (window.gsap) {
     }
   });
 
+  // Halo glow connection to article visibility
+  gsap.to(".editorial__halo-glow", {
+    scrollTrigger: {
+      trigger: ".editorial",
+      start: "top 60%",
+      end: "bottom 40%",
+      scrub: 1.5,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const intensity = 0.3 + Math.sin(progress * Math.PI * 2) * 0.4;
+        gsap.set(".editorial__halo-glow", {
+          opacity: intensity
+        });
+      }
+    }
+  });
+
+  // Light stream animation
+  gsap.to(".editorial__light-stream", {
+    scrollTrigger: {
+      trigger: ".editorial",
+      start: "top 40%",
+      end: "bottom 60%",
+      scrub: 2,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const yOffset = Math.sin(progress * Math.PI * 3) * 100;
+        const opacity = 0.2 + Math.sin(progress * Math.PI) * 0.3;
+        gsap.set(".editorial__light-stream", {
+          y: yOffset,
+          opacity: opacity
+        });
+      }
+    }
+  });
+
+  // Editorial scene animations with scroll trigger
+  gsap.utils.toArray(".editorial__scene").forEach((scene, idx) => {
+    gsap.from(scene, {
+      opacity: 0,
+      y: 40,
+      duration: 0.9,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: scene,
+        start: "top 85%",
+        once: false
+      }
+    });
+
+    // Stagger scene title and description
+    const title = scene.querySelector(".scene__title");
+    const description = scene.querySelector(".scene__description");
+    
+    if (title) {
+      gsap.from(title, {
+        opacity: 0,
+        y: 16,
+        filter: "blur(4px)",
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: scene,
+          start: "top 85%"
+        },
+        delay: 0.15
+      });
+    }
+
+    if (description) {
+      gsap.from(description, {
+        opacity: 0,
+        y: 16,
+        filter: "blur(4px)",
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: scene,
+          start: "top 85%"
+        },
+        delay: 0.3
+      });
+    }
+  });
+
+  // Keyword glow text animation
+  gsap.to(".keyword-glow-text", {
+    scrollTrigger: {
+      trigger: ".editorial",
+      start: "top 50%",
+      end: "bottom 50%",
+      scrub: 1.2,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        gsap.utils.toArray(".keyword-glow-text").forEach((keyword) => {
+          const glowIntensity = 4 + progress * 10;
+          const opacity = 0.25 + progress * 0.35;
+          keyword.style.filter = `drop-shadow(0 0 ${glowIntensity}px rgba(255, 122, 0, ${opacity}))`;
+        });
+      }
+    }
+  });
+
+  // Phrase animations
+  gsap.utils.toArray(".editorial__phrase-animated").forEach((phrase) => {
+    gsap.from(phrase, {
+      opacity: 0,
+      y: 20,
+      filter: "blur(4px)",
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: phrase,
+        start: "top 80%"
+      }
+    });
+  });
+
+  // Enhanced media animations with parallax
   gsap.utils.toArray(".editorial__media, .fullscreen-media").forEach((media) => {
     const img = media.querySelector("img");
     const veil = media.querySelector(".editorial__veil");
