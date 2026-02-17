@@ -67,6 +67,11 @@ window.addEventListener("scroll", () => {
 window.addEventListener("mousemove", (event) => {
   cursor.style.opacity = "1";
   cursor.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+  cursor.style.boxShadow = `0 0 12px rgba(255, 122, 0, 0.6), inset 0 0 8px rgba(255, 200, 100, 0.3)`;
+});
+
+window.addEventListener("mouseleave", () => {
+  cursor.style.opacity = "0";
 });
 
 const hero = document.querySelector(".hero");
@@ -110,6 +115,41 @@ if (window.gsap) {
     yoyo: true
   });
 
+  // Hero gradient pulse and light reflections
+  gsap.to(".hero__gradient", {
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top top",
+      end: "bottom top",
+      scrub: 1.5,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        gsap.set(".hero__gradient", {
+          opacity: 0.3 + Math.sin(progress * Math.PI) * 0.3
+        });
+      }
+    }
+  });
+
+  // Light reflections glow synced with scroll
+  gsap.to(".reflection", {
+    scrollTrigger: {
+      trigger: ".hero",
+      start: "top 30%",
+      end: "bottom -20%",
+      scrub: 1,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        gsap.utils.toArray(".reflection").forEach((reflection, idx) => {
+          const intensity = 0.3 + Math.sin(progress * Math.PI + idx) * 0.4;
+          gsap.set(reflection, {
+            opacity: intensity
+          });
+        });
+      }
+    }
+  });
+
   gsap.utils.toArray(".reveal").forEach((el) => {
     gsap.to(el, {
       opacity: 1,
@@ -124,7 +164,76 @@ if (window.gsap) {
     });
   });
 
-  // Exotic bottle section animations
+  // Bottle section - Advanced animations
+  // Halo double-layer intensity with scroll
+  gsap.to(".bottle-halo, .bottle-halo--secondary", {
+    scrollTrigger: {
+      trigger: ".bottle-section",
+      start: "top 50%",
+      end: "bottom 50%",
+      scrub: 1.5,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const pulseIntensity = 0.4 + Math.sin(progress * Math.PI * 2) * 0.35;
+        gsap.set(".bottle-halo", {
+          opacity: pulseIntensity * 0.6
+        });
+        gsap.set(".bottle-halo--secondary", {
+          opacity: pulseIntensity * 0.3
+        });
+      }
+    }
+  });
+
+  // Bottle light reflection flow synced with scroll
+  gsap.to(".bottle-light-reflection", {
+    scrollTrigger: {
+      trigger: ".bottle-section",
+      start: "top 45%",
+      end: "bottom 55%",
+      scrub: 2,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const rotationY = Math.sin(progress * Math.PI * 3) * 60;
+        const opacity = 0.2 + Math.sin(progress * Math.PI * 2) * 0.2;
+        gsap.set(".bottle-light-reflection", {
+          rotationY: rotationY,
+          opacity: opacity
+        });
+      }
+    }
+  });
+
+  // Bottle breathing levitation synced with scroll
+  gsap.to(".bottle-img", {
+    scrollTrigger: {
+      trigger: ".bottle-section",
+      start: "top 50%",
+      end: "bottom 50%",
+      scrub: 1,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const moveY = Math.sin(progress * Math.PI * 3) * 12;
+        const scaleEffect = 0.99 + Math.cos(progress * Math.PI * 2) * 0.02;
+        gsap.set(".bottle-img", {
+          y: moveY,
+          scale: scaleEffect,
+          opacity: 0.92 + Math.cos(progress * Math.PI * 2) * 0.08
+        });
+      }
+    }
+  });
+
+  // Extended breathing animation (time-based)
+  gsap.to(".bottle-img", {
+    y: -14,
+    duration: 4,
+    repeat: -1,
+    yoyo: true,
+    ease: "sine.inOut"
+  });
+
+  // Keyword glow enhancement
   gsap.to(".keyword-glow", {
     scrollTrigger: {
       trigger: ".bottle-section",
@@ -134,55 +243,12 @@ if (window.gsap) {
       onUpdate: (self) => {
         const progress = self.progress;
         gsap.utils.toArray(".keyword-glow").forEach((keyword) => {
-          const glowIntensity = 6 + progress * 12;
-          const opacity = 0.3 + progress * 0.4;
+          const glowIntensity = 8 + progress * 14;
+          const opacity = 0.35 + progress * 0.5;
           keyword.style.filter = `drop-shadow(0 0 ${glowIntensity}px rgba(255, 122, 0, ${opacity}))`;
         });
       }
     }
-  });
-
-  // Bottle micro-movements synced with scroll
-  gsap.to(".bottle-img", {
-    scrollTrigger: {
-      trigger: ".bottle-section",
-      start: "top 50%",
-      end: "bottom 50%",
-      scrub: 1,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const moveY = Math.sin(progress * Math.PI * 2) * 8;
-        gsap.set(".bottle-img", {
-          y: moveY,
-          opacity: 0.95 + Math.cos(progress * Math.PI * 2) * 0.05
-        });
-      }
-    }
-  });
-
-  // Halo intensity pulse with scroll
-  gsap.to(".bottle-halo", {
-    scrollTrigger: {
-      trigger: ".bottle-section",
-      start: "top 60%",
-      end: "bottom 40%",
-      scrub: 1.5,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const haloOpacity = 0.3 + Math.sin(progress * Math.PI) * 0.25;
-        gsap.set(".bottle-halo", {
-          opacity: haloOpacity
-        });
-      }
-    }
-  });
-
-  gsap.to(".bottle-img", {
-    y: -12,
-    duration: 3.2,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut"
   });
 
   gsap.to(".hero__glow", {
@@ -359,42 +425,60 @@ if (window.gsap) {
     });
   });
 
-  const fullscreen = document.querySelector(".scene--fullscreen");
-  const fullscreenImage = document.querySelector(".fullscreen-media img");
-  const fullscreenText = document.querySelector(".editorial__overlay-text");
+  // Advanced cursor interactions - change size on hover
+  const buttons = document.querySelectorAll(".btn, .nav a, button");
+  buttons.forEach((btn) => {
+    btn.addEventListener("mouseenter", () => {
+      cursor.style.width = "48px";
+      cursor.style.height = "48px";
+      cursor.style.borderWidth = "2px";
+      cursor.style.boxShadow = "0 0 20px rgba(255, 122, 0, 0.8), inset 0 0 10px rgba(255, 200, 100, 0.4)";
+    });
+    btn.addEventListener("mouseleave", () => {
+      cursor.style.width = "24px";
+      cursor.style.height = "24px";
+      cursor.style.borderWidth = "1.5px";
+      cursor.style.boxShadow = "0 0 8px rgba(255, 122, 0, 0.3), inset 0 0 4px rgba(255, 200, 100, 0.2)";
+    });
+  });
 
-  if (fullscreen && fullscreenImage) {
-    gsap.to(fullscreenImage, {
-      scale: 1,
-      ease: "none",
+  // Parallax depth effect on entire page
+  gsap.utils.toArray("section").forEach((section, idx) => {
+    const depth = 0.08 + idx * 0.02;
+    gsap.to(section, {
+      y: (window.innerHeight * depth),
       scrollTrigger: {
-        trigger: fullscreen,
-        start: "top top",
-        end: "+=140%",
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
         scrub: true,
-        pin: true,
-        anticipatePin: 1
+        onUpdate: (self) => {
+          const yValue = self.progress * 80;
+          gsap.set(section, { y: yValue });
+        }
       }
     });
+  });
 
-    if (fullscreenText) {
-      gsap.fromTo(fullscreenText, {
-        opacity: 0,
-        y: 24,
-        filter: "blur(8px)"
-      }, {
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-        scrollTrigger: {
-          trigger: fullscreen,
-          start: "top 35%",
-          end: "bottom 35%",
-          scrub: true
-        }
-      });
-    }
-  }
+  // Scroll-triggered text glow enhancements
+  gsap.utils.toArray(".section-title, h3").forEach((title) => {
+    gsap.fromTo(title, {
+      opacity: 0,
+      x: -20,
+      filter: "blur(4px)"
+    }, {
+      opacity: 1,
+      x: 0,
+      filter: "blur(0px)",
+      ease: "power3.out",
+      duration: 0.8,
+      scrollTrigger: {
+        trigger: title,
+        start: "top 85%",
+        once: false
+      }
+    });
+  });
 }
 
 

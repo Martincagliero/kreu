@@ -72,22 +72,27 @@
           <source src="video.mp4" type="video/mp4" />
         </video>
         <div class="hero__overlay"></div>
+        <div class="hero__gradient" aria-hidden="true"></div>
       </div>
       <div class="hero__content">
         <p class="eyebrow">Licor argentino de autor</p>
         <h1 class="hero__title">
-          <span class="hero__line">ORIGEN Y</span>
-          <span class="hero__line">CARÁCTER OSCURO.</span>
-          <span class="hero__line hero__line--accent">HERBAL.</span>
-          <span class="hero__line">INOLVIDABLE.</span>
+          <span class="hero__line hero__glow-line">ORIGEN Y</span>
+          <span class="hero__line hero__glow-line">CARÁCTER OSCURO.</span>
+          <span class="hero__line hero__line--accent hero__glow-line">HERBAL.</span>
+          <span class="hero__line hero__glow-line">INOLVIDABLE.</span>
         </h1>
-        <p class="hero__text">Un perfil herbal profundo, afinado con paciencia europea y alma patagónica.</p>
+        <p class="hero__text hero__glow-text">Un perfil herbal profundo, afinado con paciencia europea y alma patagónica.</p>
         <div class="hero__actions">
-          <button class="btn primary">Explorar</button>
-          <button class="btn ghost">Ver origen</button>
+          <button class="btn primary btn--liquid">Explorar</button>
+          <button class="btn ghost btn--liquid">Ver origen</button>
         </div>
       </div>
-      <div class="hero__glow"></div>
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="hero__light-reflections" aria-hidden="true">
+        <div class="reflection reflection-1"></div>
+        <div class="reflection reflection-2"></div>
+      </div>
     </section>
 
     <section class="bottle-section" id="bottle">
@@ -103,24 +108,28 @@
         </div>
       </div>
       <div class="bottle-stage">
-        <div class="bottle-halo" aria-hidden="true"></div>
-        <div class="bottle-smoke" aria-hidden="true">
-          <div class="smoke-layer smoke-layer-1"></div>
-          <div class="smoke-layer smoke-layer-2"></div>
-          <div class="smoke-layer smoke-layer-3"></div>
+        <div class="bottle-container">
+          <div class="bottle-halo" aria-hidden="true"></div>
+          <div class="bottle-halo bottle-halo--secondary" aria-hidden="true"></div>
+          <div class="bottle-smoke" aria-hidden="true">
+            <div class="smoke-layer smoke-layer-1"></div>
+            <div class="smoke-layer smoke-layer-2"></div>
+            <div class="smoke-layer smoke-layer-3"></div>
+          </div>
+          <div class="bottle-particles" aria-hidden="true">
+            <span class="bottle-particle particle-1"></span>
+            <span class="bottle-particle particle-2"></span>
+            <span class="bottle-particle particle-3"></span>
+            <span class="bottle-particle particle-4"></span>
+            <span class="bottle-particle particle-5"></span>
+            <span class="bottle-particle particle-6"></span>
+            <span class="bottle-particle particle-7"></span>
+          </div>
+          <div class="bottle-light-sweep" aria-hidden="true"></div>
+          <div class="bottle-light-reflection" aria-hidden="true"></div>
+          <div class="bottle-blob"></div>
+          <img src="bottle.png" alt="Botella Krautermeister" class="bottle-img reveal" />
         </div>
-        <div class="bottle-particles" aria-hidden="true">
-          <span class="bottle-particle particle-1"></span>
-          <span class="bottle-particle particle-2"></span>
-          <span class="bottle-particle particle-3"></span>
-          <span class="bottle-particle particle-4"></span>
-          <span class="bottle-particle particle-5"></span>
-          <span class="bottle-particle particle-6"></span>
-          <span class="bottle-particle particle-7"></span>
-        </div>
-        <div class="bottle-light-sweep" aria-hidden="true"></div>
-        <div class="bottle-blob"></div>
-        <img src="bottle.png" alt="Botella Krautermeister" class="bottle-img reveal" />
       </div>
     </section>
 
