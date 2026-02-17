@@ -120,18 +120,21 @@ if (window.gsap) {
     }
   });
 
-  gsap.utils.toArray(".editorial__media, .fragment__piece, .editorial__fullscreen-media").forEach((media) => {
+  gsap.utils.toArray(".editorial__media, .fullscreen-media").forEach((media) => {
     const img = media.querySelector("img");
     const veil = media.querySelector(".editorial__veil");
     const sweep = media.querySelector(".editorial__sweep");
     const depth = Number(media.dataset.depth || 0.12);
+    const drift = Number(media.dataset.drift || 0);
+    const rotate = Number(media.dataset.rotate || 0);
 
     gsap.from(media, {
       opacity: 0,
       y: 36,
       scale: 0.98,
-      duration: 1.1,
-      ease: "power3.out",
+      rotate: rotate,
+      duration: 1.3,
+      ease: "power4.out",
       scrollTrigger: {
         trigger: media,
         start: "top 80%"
@@ -182,6 +185,19 @@ if (window.gsap) {
       });
     }
 
+    if (drift) {
+      gsap.to(media, {
+        x: drift,
+        ease: "none",
+        scrollTrigger: {
+          trigger: media,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
+    }
+
     gsap.fromTo(media, {
       scale: 0.98
     }, {
@@ -214,8 +230,28 @@ if (window.gsap) {
     }
   });
 
-  const fullscreen = document.querySelector(".editorial__fullscreen");
-  const fullscreenImage = document.querySelector(".editorial__fullscreen-media img");
+  gsap.utils.toArray(".editorial__phrase").forEach((phrase) => {
+    gsap.fromTo(phrase, {
+      opacity: 0,
+      filter: "blur(6px)",
+      y: 12
+    }, {
+      opacity: 1,
+      filter: "blur(0px)",
+      y: 0,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: phrase,
+        start: "top 75%",
+        end: "bottom 45%",
+        scrub: true
+      }
+    });
+  });
+
+  const fullscreen = document.querySelector(".scene--fullscreen");
+  const fullscreenImage = document.querySelector(".fullscreen-media img");
+  const fullscreenText = document.querySelector(".editorial__overlay-text");
 
   if (fullscreen && fullscreenImage) {
     gsap.to(fullscreenImage, {
@@ -224,11 +260,29 @@ if (window.gsap) {
       scrollTrigger: {
         trigger: fullscreen,
         start: "top top",
-        end: "+=120%",
+        end: "+=140%",
         scrub: true,
         pin: true,
         anticipatePin: 1
       }
     });
+
+    if (fullscreenText) {
+      gsap.fromTo(fullscreenText, {
+        opacity: 0,
+        y: 24,
+        filter: "blur(8px)"
+      }, {
+        opacity: 1,
+        y: 0,
+        filter: "blur(0px)",
+        scrollTrigger: {
+          trigger: fullscreen,
+          start: "top 35%",
+          end: "bottom 35%",
+          scrub: true
+        }
+      });
+    }
   }
 }
