@@ -214,10 +214,16 @@ const initBottle3D = async () => {
 };
 
 // Initialize bottle after page loads
+const initBottleWhenReady = () => {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initBottle3D);
+  } else {
+    initBottle3D();
+  }
+};
+
 window.addEventListener("load", initBottle3D);
-if (document.readyState === "complete") {
-  initBottle3D();
-}
+initBottleWhenReady();
 
 const hero = document.querySelector(".hero");
 window.addEventListener("scroll", () => {
@@ -225,8 +231,10 @@ window.addEventListener("scroll", () => {
   hero.style.transform = `translateY(${offset}px)`;
 });
 
-if (window.gsap) {
-  gsap.registerPlugin(ScrollTrigger);
+// Envolver GSAP en DOMContentLoaded para asegurar que el DOM está listo
+const initGSAPAnimations = () => {
+  if (window.gsap) {
+    gsap.registerPlugin(ScrollTrigger);
 
   const heroTimeline = gsap.timeline({
     defaults: { ease: "power3.out" }
@@ -763,6 +771,14 @@ if (window.gsap) {
       }
     });
   });
+  }
+};
+
+// Ejecutar animaciones GSAP cuando el DOM esté listo
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initGSAPAnimations);
+} else {
+  initGSAPAnimations();
 }
 
 
