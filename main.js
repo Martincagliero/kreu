@@ -124,24 +124,26 @@ if (window.gsap) {
     });
   });
 
-  // Mystical bottle section animations
-  gsap.utils.toArray(".mystical-word").forEach((word, index) => {
-    gsap.from(word, {
-      opacity: 0,
-      y: 12,
-      duration: 0.6,
-      ease: "power2.out",
-      delay: 0.3 + index * 0.08,
-      scrollTrigger: {
-        trigger: ".bottle-section__text",
-        start: "top 75%",
-        once: false
+  // Exotic bottle section animations
+  gsap.to(".keyword-glow", {
+    scrollTrigger: {
+      trigger: ".bottle-section",
+      start: "top 45%",
+      end: "bottom 55%",
+      scrub: 1.2,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        gsap.utils.toArray(".keyword-glow").forEach((keyword) => {
+          const glowIntensity = 6 + progress * 12;
+          const opacity = 0.3 + progress * 0.4;
+          keyword.style.filter = `drop-shadow(0 0 ${glowIntensity}px rgba(255, 122, 0, ${opacity}))`;
+        });
       }
-    });
+    }
   });
 
-  // Mystical keyword color sync with scroll
-  gsap.to(".mystical-keyword", {
+  // Bottle micro-movements synced with scroll
+  gsap.to(".bottle-img", {
     scrollTrigger: {
       trigger: ".bottle-section",
       start: "top 50%",
@@ -149,10 +151,27 @@ if (window.gsap) {
       scrub: 1,
       onUpdate: (self) => {
         const progress = self.progress;
-        gsap.utils.toArray(".mystical-keyword").forEach((keyword) => {
-          const hue = 30 + progress * 15;
-          const brightness = 1 + Math.sin(progress * Math.PI * 2) * 0.15;
-          keyword.style.filter = `drop-shadow(0 0 ${8 + progress * 8}px rgba(255, 122, 0, ${0.3 + progress * 0.3})) brightness(${brightness})`;
+        const moveY = Math.sin(progress * Math.PI * 2) * 8;
+        gsap.set(".bottle-img", {
+          y: moveY,
+          opacity: 0.95 + Math.cos(progress * Math.PI * 2) * 0.05
+        });
+      }
+    }
+  });
+
+  // Halo intensity pulse with scroll
+  gsap.to(".bottle-halo", {
+    scrollTrigger: {
+      trigger: ".bottle-section",
+      start: "top 60%",
+      end: "bottom 40%",
+      scrub: 1.5,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const haloOpacity = 0.3 + Math.sin(progress * Math.PI) * 0.25;
+        gsap.set(".bottle-halo", {
+          opacity: haloOpacity
         });
       }
     }
