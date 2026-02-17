@@ -356,10 +356,40 @@ button {
 }
 
 .hero__brand-logo img {
-  width: clamp(130px, 18vw, 220px);
+  width: clamp(180px, 22vw, 320px);
   height: auto;
   display: block;
   filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 14px rgba(255, 122, 0, 0.2));
+}
+
+@media (max-width: 1024px) {
+  .hero__brand-logo {
+    top: 64px;
+  }
+
+  .hero__brand-logo img {
+    width: clamp(180px, 32vw, 360px);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero__brand-logo {
+    top: 56px;
+  }
+
+  .hero__brand-logo img {
+    width: clamp(180px, 42vw, 320px);
+  }
+}
+
+@media (max-width: 520px) {
+  .hero__brand-logo {
+    top: 48px;
+  }
+
+  .hero__brand-logo img {
+    width: clamp(160px, 50vw, 260px);
+  }
 }
 
 @keyframes heroLogoIn {
