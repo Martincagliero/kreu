@@ -82,6 +82,12 @@ if (window.gsap) {
     defaults: { ease: "power3.out" }
   });
 
+  const heroLines = Array.from(document.querySelectorAll(".hero__line"));
+  const accentLine = document.querySelector(".hero__line--accent");
+  const orderedLines = accentLine
+    ? heroLines.filter((line) => line !== accentLine).concat(accentLine)
+    : heroLines;
+
   heroTimeline
     .from([".eyebrow", ".hero__text", ".hero__actions"], {
       opacity: 0,
@@ -89,17 +95,11 @@ if (window.gsap) {
       duration: 1.1,
       stagger: 0.1
     }, 0)
-    .from(".hero__line", {
+    .from(orderedLines, {
       opacity: 0,
       y: 26,
       duration: 1.2,
       stagger: 0.12
-    }, 0.1)
-    .from(".hero__line--accent", {
-      opacity: 0,
-      y: 30,
-      duration: 1.3,
-      delay: 0.2
     }, ">-0.2");
 
   gsap.to(".hero__video video", {
