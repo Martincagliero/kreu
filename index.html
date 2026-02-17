@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/loaders/GLTFLoader.js"></script>
 </head>
 <body>
   <div class="cursor" aria-hidden="true"></div>
@@ -96,6 +98,22 @@
     </section>
 
     <section class="bottle-section" id="bottle">
+      <div class="bottle-section__canvas-wrapper">
+        <canvas id="bottle3d" class="bottle-3d-canvas"></canvas>
+        <div class="bottle-3d-halo" aria-hidden="true"></div>
+        <div class="bottle-3d-halo bottle-3d-halo--secondary" aria-hidden="true"></div>
+        <div class="bottle-3d-particles" aria-hidden="true">
+          <span class="bottle-3d-particle"></span>
+          <span class="bottle-3d-particle"></span>
+          <span class="bottle-3d-particle"></span>
+          <span class="bottle-3d-particle"></span>
+          <span class="bottle-3d-particle"></span>
+          <span class="bottle-3d-particle"></span>
+          <span class="bottle-3d-particle"></span>
+          <span class="bottle-3d-particle"></span>
+        </div>
+        <div class="bottle-3d-light-stream" aria-hidden="true"></div>
+      </div>
       <div class="bottle-section__text reveal">
         <h2 class="section-title">La botella como amuleto</h2>
         <div class="bottle-mystique">
@@ -105,30 +123,6 @@
             <span class="copy-line line-3">con un <span class="keyword-glow">brillo sutil</span> que revela su esencia.</span>
           </p>
           <div class="text-aura" aria-hidden="true"></div>
-        </div>
-      </div>
-      <div class="bottle-stage">
-        <div class="bottle-container">
-          <div class="bottle-halo" aria-hidden="true"></div>
-          <div class="bottle-halo bottle-halo--secondary" aria-hidden="true"></div>
-          <div class="bottle-smoke" aria-hidden="true">
-            <div class="smoke-layer smoke-layer-1"></div>
-            <div class="smoke-layer smoke-layer-2"></div>
-            <div class="smoke-layer smoke-layer-3"></div>
-          </div>
-          <div class="bottle-particles" aria-hidden="true">
-            <span class="bottle-particle particle-1"></span>
-            <span class="bottle-particle particle-2"></span>
-            <span class="bottle-particle particle-3"></span>
-            <span class="bottle-particle particle-4"></span>
-            <span class="bottle-particle particle-5"></span>
-            <span class="bottle-particle particle-6"></span>
-            <span class="bottle-particle particle-7"></span>
-          </div>
-          <div class="bottle-light-sweep" aria-hidden="true"></div>
-          <div class="bottle-light-reflection" aria-hidden="true"></div>
-          <div class="bottle-blob"></div>
-          <img src="bottle.png" alt="Botella Krautermeister" class="bottle-img reveal" />
         </div>
       </div>
     </section>

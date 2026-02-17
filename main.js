@@ -74,6 +74,151 @@ window.addEventListener("mouseleave", () => {
   cursor.style.opacity = "0";
 });
 
+// ===== THREE.JS 3D BOTTLE INITIALIZATION =====
+let bottleScene, bottleCamera, bottleRenderer, bottleModel;
+let bottleRotationX = 0, bottleRotationY = 0;
+let targetRotationX = 0, targetRotationY = 0;
+const bottleAnimationState = { breathing: 0, haloIntensity: 0.3 };
+
+const initBottle3D = async () => {
+  const canvas = document.getElementById("bottle3d");
+  if (!canvas) return;
+
+  // Scene Setup
+  bottleScene = new THREE.Scene();
+  
+  // Camera Setup
+  bottleCamera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 0.1, 2000);
+  bottleCamera.position.set(0, 0, 3);
+  
+  // Renderer Setup
+  bottleRenderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  bottleRenderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  bottleRenderer.setPixelRatio(window.devicePixelRatio);
+  bottleRenderer.setClearColor(0x000000, 0);
+  bottleRenderer.shadowMap.enabled = true;
+  
+  // Lighting Setup
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+  bottleScene.add(ambientLight);
+  
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+  directionalLight.position.set(5, 5, 7);
+  directionalLight.castShadow = true;
+  directionalLight.shadow.mapSize.width = 2048;
+  directionalLight.shadow.mapSize.height = 2048;
+  bottleScene.add(directionalLight);
+  
+  const rimLight = new THREE.DirectionalLight(0xff9900, 0.6);
+  rimLight.position.set(-5, 2, -5);
+  bottleScene.add(rimLight);
+  
+  // Load GLB Model
+  const loader = new THREE.GLTFLoader();
+  try {
+    const gltf = await loader.loadAsync("./bottle-v1.glb");
+    bottleModel = gltf.scene;
+    bottleModel.scale.set(1, 1, 1);
+    bottleModel.position.set(0, 0, 0);
+    bottleModel.castShadow = true;
+    bottleModel.receiveShadow = true;
+    
+    // Apply materials to all meshes
+    bottleModel.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+        if (child.material) {
+          child.material.side = THREE.DoubleSide;
+        }
+      }
+    });
+    
+    bottleScene.add(bottleModel);
+  } catch (error) {
+    console.error("Error loading bottle model:", error);
+  }
+  
+  // Handle Window Resize
+  const handleResize = () => {
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    bottleCamera.aspect = width / height;
+    bottleCamera.updateProjectionMatrix();
+    bottleRenderer.setSize(width, height);
+  };
+  window.addEventListener("resize", handleResize);
+  
+  // Cursor Interaction
+  document.addEventListener("mousemove", (event) => {
+    const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    
+    targetRotationX = mouseY * 0.3;
+    targetRotationY = mouseX * 0.5;
+  });
+  
+  // Scroll Interaction
+  let lastScrollTime = 0;
+  window.addEventListener("scroll", () => {
+    lastScrollTime = Date.now();
+  });
+  
+  // Animation Loop
+  const animateBottle = () => {
+    requestAnimationFrame(animateBottle);
+    
+    // Smooth rotation from target
+    bottleRotationX += (targetRotationX - bottleRotationX) * 0.08;
+    bottleRotationY += (targetRotationY - bottleRotationY) * 0.08;
+    
+    // Continuous subtle rotation
+    bottleRotationY += 0.0008;
+    
+    if (bottleModel) {
+      bottleModel.rotation.x = bottleRotationX;
+      bottleModel.rotation.y = bottleRotationY;
+      
+      // Breathing animation
+      const time = Date.now() * 0.001;
+      const breathingScale = 1 + Math.sin(time * 1.5) * 0.04;
+      bottleModel.scale.set(breathingScale, breathingScale, breathingScale);
+    }
+    
+    // Scroll-synced bottle section animations
+    const bottleSection = document.querySelector(".bottle-section");
+    if (bottleSection) {
+      const rect = bottleSection.getBoundingClientRect();
+      const sectionProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / (window.innerHeight + rect.height)));
+      
+      // Halo intensity based on scroll
+      bottleAnimationState.haloIntensity = 0.3 + sectionProgress * 0.4;
+      
+      // Update halos
+      const halos = document.querySelectorAll(".bottle-3d-halo");
+      halos.forEach((halo, idx) => {
+        halo.style.opacity = bottleAnimationState.haloIntensity * (idx === 0 ? 1 : 0.6);
+      });
+      
+      // Update light stream
+      const lightStream = document.querySelector(".bottle-3d-light-stream");
+      if (lightStream) {
+        lightStream.style.opacity = bottleAnimationState.haloIntensity * 0.6;
+      }
+    }
+    
+    bottleRenderer.render(bottleScene, bottleCamera);
+  };
+  
+  animateBottle();
+};
+
+// Initialize bottle after page loads
+window.addEventListener("load", initBottle3D);
+if (document.readyState === "complete") {
+  initBottle3D();
+}
+
 const hero = document.querySelector(".hero");
 window.addEventListener("scroll", () => {
   const offset = window.scrollY * 0.15;

@@ -568,10 +568,144 @@ section {
 
 .bottle-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 60px;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
   align-items: center;
   background: linear-gradient(120deg, var(--bg-main), var(--bg-secondary));
+  position: relative;
+  padding: 120px 40px;
+}
+
+.bottle-section__canvas-wrapper {
+  position: relative;
+  height: 600px;
+  display: grid;
+  place-items: center;
+  perspective: 1200px;
+}
+
+.bottle-3d-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 20px;
+  filter: drop-shadow(0 60px 100px rgba(0, 0, 0, 0.8));
+}
+
+/* 3D Bottle Halos */
+.bottle-3d-halo {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(255, 122, 0, 0.15), transparent);
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: bottle3DHaloPulse 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bottle-3d-halo--secondary {
+  width: 600px;
+  height: 600px;
+  animation: bottle3DHaloPulseSlow 8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+  filter: blur(100px);
+  opacity: 0.6;
+}
+
+@keyframes bottle3DHaloPulse {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(0.95);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes bottle3DHaloPulseSlow {
+  0%, 100% {
+    opacity: 0.1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+/* 3D Bottle Particles */
+.bottle-3d-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  z-index: 2;
+}
+
+.bottle-3d-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(255, 200, 100, 0.8);
+  border-radius: 50%;
+  filter: blur(0.5px) drop-shadow(0 0 3px rgba(255, 122, 0, 0.6));
+  animation: bottle3DParticleFloat 8s ease-in-out infinite;
+}
+
+.bottle-3d-particle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+.bottle-3d-particle:nth-child(2) { top: 30%; right: 20%; animation-delay: 1s; }
+.bottle-3d-particle:nth-child(3) { top: 50%; left: 25%; animation-delay: 2s; }
+.bottle-3d-particle:nth-child(4) { bottom: 30%; right: 15%; animation-delay: 3s; }
+.bottle-3d-particle:nth-child(5) { top: 40%; left: 40%; animation-delay: 4s; }
+.bottle-3d-particle:nth-child(6) { bottom: 20%; left: 30%; animation-delay: 5s; }
+.bottle-3d-particle:nth-child(7) { top: 60%; right: 35%; animation-delay: 6s; }
+.bottle-3d-particle:nth-child(8) { bottom: 40%; right: 20%; animation-delay: 7s; }
+
+@keyframes bottle3DParticleFloat {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translateY(-30px) translateX(15px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-60px) translateX(-10px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-30px) translateX(20px);
+    opacity: 0.6;
+  }
+}
+
+/* Light Stream */
+.bottle-3d-light-stream {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 800px;
+  background: linear-gradient(to bottom, rgba(255, 180, 100, 0.1), rgba(255, 122, 0, 0.05), transparent);
+  filter: blur(40px);
+  transform: translate(-50%, -50%);
+  animation: bottle3DLightStreamFlow 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes bottle3DLightStreamFlow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scaleY(0.9);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scaleY(1.1);
+  }
 }
 
 .bottle-section__text p {
@@ -1874,6 +2008,26 @@ section {
     flex-direction: column;
   }
 
+  .bottle-section {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 80px 40px;
+  }
+
+  .bottle-section__canvas-wrapper {
+    height: 500px;
+  }
+
+  .bottle-3d-halo {
+    width: 400px;
+    height: 400px;
+  }
+
+  .bottle-3d-halo--secondary {
+    width: 500px;
+    height: 500px;
+  }
+
   .editorial__scene {
     grid-template-columns: repeat(6, 1fr);
   }
@@ -1942,6 +2096,38 @@ section {
 
   .hero {
     padding: 100px 12px 60px;
+  }
+
+  .bottle-section {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 60px 20px;
+  }
+
+  .bottle-section__canvas-wrapper {
+    height: 350px;
+  }
+
+  .bottle-3d-halo {
+    width: 300px;
+    height: 300px;
+    filter: blur(60px);
+  }
+
+  .bottle-3d-halo--secondary {
+    width: 380px;
+    height: 380px;
+    filter: blur(80px);
+  }
+
+  .bottle-3d-particle {
+    width: 1.5px;
+    height: 1.5px;
+  }
+
+  .bottle-3d-light-stream {
+    width: 150px;
+    height: 500px;
   }
 
   .hero__title {
