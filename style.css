@@ -346,7 +346,7 @@ button {
 
 .hero__brand-logo {
   position: absolute;
-  top: 32px;
+  top: 90px;
   left: 50%;
   transform: translateX(-50%) scale(0.96);
   z-index: 2;
@@ -364,7 +364,7 @@ button {
 
 @media (max-width: 1024px) {
   .hero__brand-logo {
-    top: 28px;
+    top: 85px;
   }
 
   .hero__brand-logo img {
@@ -374,7 +374,7 @@ button {
 
 @media (max-width: 768px) {
   .hero__brand-logo {
-    top: 26px;
+    top: 80px;
   }
 
   .hero__brand-logo img {
@@ -384,7 +384,7 @@ button {
 
 @media (max-width: 520px) {
   .hero__brand-logo {
-    top: 24px;
+    top: 75px;
   }
 
   .hero__brand-logo img {
