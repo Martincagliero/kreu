@@ -344,6 +344,35 @@ button {
   pointer-events: none;
 }
 
+.hero__brand-logo {
+  position: absolute;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.96);
+  z-index: 2;
+  opacity: 0;
+  pointer-events: none;
+  animation: heroLogoIn 1s ease 0.2s forwards;
+}
+
+.hero__brand-logo img {
+  width: clamp(140px, 22vw, 280px);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 14px rgba(255, 122, 0, 0.2));
+}
+
+@keyframes heroLogoIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+}
+
 @keyframes heroGradientPulse {
   0%, 100% { opacity: 0; }
   50% { opacity: 0.4; }
