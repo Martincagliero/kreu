@@ -339,52 +339,16 @@ const initGSAPAnimations = () => {
   });
 
   // Bottle light reflection flow synced with scroll
-  gsap.to(".bottle-light-reflection", {
-    scrollTrigger: {
-      trigger: ".bottle-section",
-      start: "top 45%",
-      end: "bottom 55%",
-      scrub: 2,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const rotationY = Math.sin(progress * Math.PI * 3) * 60;
-        const opacity = 0.2 + Math.sin(progress * Math.PI * 2) * 0.2;
-        gsap.set(".bottle-light-reflection", {
-          rotationY: rotationY,
-          opacity: opacity
-        });
-      }
-    }
-  });
+  // ⚠️ REMOVED: .bottle-light-reflection element doesn't exist in HTML
+  // The 3D bottle animation is handled by Three.js in index.html
 
   // Bottle breathing levitation synced with scroll
-  gsap.to(".bottle-img", {
-    scrollTrigger: {
-      trigger: ".bottle-section",
-      start: "top 50%",
-      end: "bottom 50%",
-      scrub: 1,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const moveY = Math.sin(progress * Math.PI * 3) * 12;
-        const scaleEffect = 0.99 + Math.cos(progress * Math.PI * 2) * 0.02;
-        gsap.set(".bottle-img", {
-          y: moveY,
-          scale: scaleEffect,
-          opacity: 0.92 + Math.cos(progress * Math.PI * 2) * 0.08
-        });
-      }
-    }
-  });
+  // ⚠️ REMOVED: .bottle-img element doesn't exist in HTML
+  // The 3D bottle animation is handled by Three.js in index.html
 
   // Extended breathing animation (time-based)
-  gsap.to(".bottle-img", {
-    y: -14,
-    duration: 4,
-    repeat: -1,
-    yoyo: true,
-    ease: "sine.inOut"
-  });
+  // ⚠️ REMOVED: .bottle-img element doesn't exist in HTML
+  // The 3D bottle animation is handled by Three.js in index.html
 
   // Keyword glow enhancement
   gsap.to(".keyword-glow", {
