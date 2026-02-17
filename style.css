@@ -346,7 +346,7 @@ button {
 
 .hero__brand-logo {
   position: absolute;
-  top: 120px;
+  top: 75px;
   left: 50%;
   transform: translateX(-50%) scale(0.85);
   z-index: 2;
@@ -356,39 +356,39 @@ button {
 }
 
 .hero__brand-logo img {
-  width: clamp(300px, 28vw, 420px);
+  width: clamp(500px, 48vw, 900px);
   height: auto;
   display: block;
-  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 20px rgba(255, 122, 0, 0.3)) drop-shadow(0 0 40px rgba(255, 122, 0, 0.15));
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 30px rgba(255, 122, 0, 0.4)) drop-shadow(0 0 60px rgba(255, 122, 0, 0.2));
 }
 
 @media (max-width: 1024px) {
   .hero__brand-logo {
-    top: 110px;
+    top: 80px;
   }
 
   .hero__brand-logo img {
-    width: clamp(280px, 40vw, 400px);
+    width: clamp(420px, 55vw, 700px);
   }
 }
 
 @media (max-width: 768px) {
   .hero__brand-logo {
-    top: 100px;
+    top: 85px;
   }
 
   .hero__brand-logo img {
-    width: clamp(240px, 45vw, 360px);
+    width: clamp(350px, 60vw, 580px);
   }
 }
 
 @media (max-width: 520px) {
   .hero__brand-logo {
-    top: 90px;
+    top: 75px;
   }
 
   .hero__brand-logo img {
-    width: clamp(180px, 50vw, 280px);
+    width: clamp(280px, 65vw, 450px);
   }
 }
 
@@ -416,7 +416,7 @@ button {
   text-align: center;
   z-index: 2;
   display: grid;
-  padding-top: 140px;
+  padding-top: 200px;
   gap: 28px;
 }
 
@@ -424,7 +424,7 @@ button {
   text-transform: uppercase;
   letter-spacing: 4px;
   font-size: 11px;
-  margin-top: 50px;
+  margin-top: 80px;
   color: var(--muted);
   opacity: 0.85;
 }
