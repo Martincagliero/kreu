@@ -1,6 +1,7 @@
 const preloader = document.getElementById("preloader");
 const loaderValue = document.getElementById("loaderValue");
 const bottleLiquid = document.querySelector(".bottle-liquid");
+const bottleOutline = document.querySelector(".bottle-outline");
 const navbar = document.getElementById("navbar");
 const cursor = document.querySelector(".cursor");
 
@@ -18,20 +19,33 @@ const finishPreloader = () => {
 };
 
 if (window.gsap) {
+  if (bottleOutline) {
+    const outlineLength = bottleOutline.getTotalLength();
+    gsap.set(bottleOutline, {
+      strokeDasharray: outlineLength,
+      strokeDashoffset: outlineLength
+    });
+  }
+
   const progress = { value: 0 };
   gsap.timeline({
     defaults: { ease: "power3.out" }
   })
     .to(".preloader__wrap", { opacity: 1, duration: 0.6 })
+    .to(".preloader__logo", { opacity: 1, y: 0, duration: 0.6 }, "<")
+    .to(".preloader__particles span", { opacity: 1, duration: 0.6, stagger: 0.08 }, "-=0.2")
+    .to(".bottle-outline", { strokeDashoffset: 0, duration: 1.6, ease: "power2.out" }, "-=0.3")
     .to(progress, {
       value: 100,
-      duration: 2.6,
+      duration: 2.4,
+      ease: "power2.out",
       onUpdate: () => updateLiquid(progress.value)
     }, "<")
     .to(".bottle-liquid", {
       filter: "url(#liquidGlow) drop-shadow(0 0 16px rgba(255,122,0,0.55))",
       duration: 0.8
-    }, "-=0.4")
+    }, "-=0.6")
+    .to(".preloader__sweep", { opacity: 0.6, xPercent: 120, duration: 1.4 }, "-=1.0")
     .to(".preloader__wrap", { opacity: 0, duration: 0.6 }, "+=0.2")
     .add(() => finishPreloader());
 } else {

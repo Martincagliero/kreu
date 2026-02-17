@@ -79,10 +79,68 @@ button {
   opacity: 0;
 }
 
+.preloader__logo {
+  width: 90px;
+  height: 90px;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.preloader__logo img {
+  width: 100%;
+  height: auto;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 10px rgba(255, 122, 0, 0.25));
+}
+
 .preloader__bottle {
   width: 140px;
   height: 360px;
+  position: relative;
+  display: grid;
+  place-items: center;
 }
+
+.preloader__sweep {
+  position: absolute;
+  inset: -10% -40% auto;
+  height: 40%;
+  background: linear-gradient(120deg, transparent, rgba(255, 122, 0, 0.18), transparent);
+  opacity: 0;
+  transform: translateX(-120%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.preloader__particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.preloader__particles span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(245, 243, 238, 0.15);
+  opacity: 0;
+  filter: blur(1px);
+  animation: floatParticle 6s ease-in-out infinite;
+}
+
+.preloader__particles span:nth-child(1) { top: 10%; left: 35%; animation-delay: 0s; }
+.preloader__particles span:nth-child(2) { top: 22%; left: 58%; animation-delay: 0.6s; }
+.preloader__particles span:nth-child(3) { top: 38%; left: 28%; animation-delay: 1.2s; }
+.preloader__particles span:nth-child(4) { top: 52%; left: 66%; animation-delay: 1.8s; }
+.preloader__particles span:nth-child(5) { top: 70%; left: 42%; animation-delay: 2.4s; }
+.preloader__particles span:nth-child(6) { top: 14%; left: 46%; animation-delay: 0.4s; }
+.preloader__particles span:nth-child(7) { top: 30%; left: 74%; animation-delay: 1s; }
+.preloader__particles span:nth-child(8) { top: 46%; left: 18%; animation-delay: 1.6s; }
+.preloader__particles span:nth-child(9) { top: 62%; left: 54%; animation-delay: 2.2s; }
+.preloader__particles span:nth-child(10) { top: 78%; left: 30%; animation-delay: 2.8s; }
 
 .bottle {
   width: 100%;
@@ -95,6 +153,7 @@ button {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+  filter: drop-shadow(0 0 4px rgba(255, 122, 0, 0.15));
 }
 
 .bottle-neck {
@@ -119,6 +178,20 @@ button {
   text-transform: uppercase;
   letter-spacing: 3px;
   color: var(--muted);
+}
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.35;
+  }
+  60% {
+    transform: translateY(-16px);
+    opacity: 0.2;
+  }
 }
 
 .navbar {
