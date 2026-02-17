@@ -356,7 +356,7 @@ button {
 }
 
 .hero__brand-logo img {
-  width: clamp(140px, 22vw, 280px);
+  width: clamp(130px, 18vw, 220px);
   height: auto;
   display: block;
   filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45)) drop-shadow(0 0 14px rgba(255, 122, 0, 0.2));
@@ -396,7 +396,7 @@ button {
 
 .hero__title {
   font-family: "Playfair Display", serif;
-  font-size: clamp(44px, 7vw, 108px);
+  font-size: clamp(36px, 5.6vw, 88px);
   line-height: 1.18;
   letter-spacing: 2.4px;
 }
