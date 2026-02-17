@@ -8,10 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <!-- Three.js & Loaders - Load BEFORE any 3D initialization -->
-  <script src="three.min.js"></script>
-  <script src="GLTFLoader.js"></script>
-  <script src="DRACOLoader.js"></script>
+  <!-- Three.js & Loaders - Load from CDN (Vercel can access them, browser receives via Vercel proxy) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@r128/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@r128/examples/js/loaders/DRACOLoader.js"></script>
 </head>
 <body>
   <div class="cursor" aria-hidden="true"></div>
@@ -282,9 +282,9 @@
       // Configure DRACO if available
       if (typeof THREE.DRACOLoader !== 'undefined') {
         const dracoLoader = new THREE.DRACOLoader();
-        dracoLoader.setDecoderPath('draco/');
+        dracoLoader.setDecoderPath('https://cdn.jsdelivr.net/npm/three@r128/examples/js/libs/draco/');
         loader.setDRACOLoader(dracoLoader);
-        console.log('✅ DRACOLoader configured');
+        console.log('✅ DRACOLoader configured with CDN path');
       }
 
       loader.load(
