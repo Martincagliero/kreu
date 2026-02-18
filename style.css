@@ -63,6 +63,12 @@ button {
   filter: blur(2px);
 }
 
+@media (max-width: 768px) {
+  .cursor {
+    display: none;
+  }
+}
+
 
 .preloader {
   position: fixed;
