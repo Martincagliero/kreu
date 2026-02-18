@@ -8,10 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
-  <!-- Three.js & Loaders - Local files for same-origin reliability -->
-  <script src="three.min.js"></script>
-  <script src="GLTFLoader.js"></script>
-  <script src="DRACOLoader.js"></script>
+  <link rel="preload" href="three.min.js" as="script" />
+  <!-- Three.js & Loaders - Deferred loading -->
+  <script defer src="three.min.js"></script>
+  <script defer src="GLTFLoader.js"></script>
+  <script defer src="DRACOLoader.js"></script>
 </head>
 <body>
   <div class="cursor" aria-hidden="true"></div>
@@ -19,7 +20,7 @@
   <div id="preloader" class="preloader" aria-live="polite">
     <div class="preloader__wrap">
       <div class="preloader__logo" aria-hidden="true">
-        <img src="logo.png" alt="" />
+        <img src="logo.png" alt="" width="90" height="90" />
       </div>
       <div class="preloader__bottle" role="img" aria-label="Botella minimalista">
         <div class="preloader__sweep" aria-hidden="true"></div>
@@ -56,7 +57,7 @@
   <header class="navbar" id="navbar">
     <div class="navbar__inner">
       <div class="logo">
-        <img src="logo.png" alt="Krautermeister" class="logo__img" />
+        <img src="logo.png" alt="Krautermeister" class="logo__img" width="40" height="40" />
         <span>KRAUTERMEISTER</span>
       </div>
       <nav class="nav">
@@ -206,7 +207,7 @@
       <div class="editorial__story">
         <article class="editorial__scene scene--wide">
           <div class="editorial__media clip-animate clip-a drift-x" data-depth="0.18" data-drift="-60" data-rotate="2">
-            <img src="kreu5.jpeg" alt="Bosque herbal" />
+            <img src="kreu5.jpeg" alt="Bosque herbal" loading="lazy" />
             <span class="editorial__veil"></span>
             <span class="editorial__sweep"></span>
           </div>
@@ -247,7 +248,7 @@
 
         <div class="editorial__scene scene--fullscreen">
           <div class="editorial__media fullscreen-media" data-depth="0.06">
-            <img src="kreu4.jpg" alt="Luz sobre botanicos" />
+            <img src="kreu4.jpg" alt="Luz sobre botanicos" loading="lazy" />
             <span class="editorial__veil"></span>
           </div>
           <div class="editorial__overlay-text">
@@ -288,7 +289,7 @@
 
         <article class="editorial__scene scene--closing">
           <div class="editorial__media clip-animate clip-e drift-x tilt-left" data-depth="0.12" data-drift="-40" data-rotate="2">
-            <img src="kreu1.jpg" alt="Textura" />
+            <img src="kreu1.jpg" alt="Textura" loading="lazy" />
             <span class="editorial__veil"></span>
             <span class="editorial__sweep"></span>
           </div>
@@ -325,7 +326,7 @@
           <div class="ingredient-item ingredient-item--1">
             <div class="ingredient-card">
               <div class="ingredient-image">
-                <img src="img/anis-estrellado.png" alt="Anís Estrellado">
+                <img src="img/anis-estrellado.png" alt="Anisweiß Estrellado" loading="lazy">
               </div>
               <p class="ingredient-label">ANÍS ESTRELLADO</p>
             </div>
@@ -334,7 +335,7 @@
           <div class="ingredient-item ingredient-item--2">
             <div class="ingredient-card">
               <div class="ingredient-image">
-                <img src="img/hierba-menta.png" alt="Hierba de Menta">
+                <img src="img/hierba-menta.png" alt="Hierba de Menta" loading="lazy">
               </div>
               <p class="ingredient-label">HIERBA DE MENTA</p>
             </div>
@@ -343,7 +344,7 @@
           <div class="ingredient-item ingredient-item--3">
             <div class="ingredient-card">
               <div class="ingredient-image">
-                <img src="img/regaliz.png" alt="Regaliz">
+                <img src="img/regaliz.png" alt="Regaliz" loading="lazy">
               </div>
               <p class="ingredient-label">REGALIZ</p>
             </div>
@@ -352,7 +353,7 @@
           <div class="ingredient-item ingredient-item--4">
             <div class="ingredient-card">
               <div class="ingredient-image">
-                <img src="img/clavo-olor.png" alt="Clavo de Olor">
+                <img src="img/clavo-olor.png" alt="Clavo de Olor" loading="lazy">
               </div>
               <p class="ingredient-label">CLAVO DE OLOR</p>
             </div>
@@ -361,7 +362,7 @@
           <div class="ingredient-item ingredient-item--5">
             <div class="ingredient-card">
               <div class="ingredient-image">
-                <img src="img/manzanilla.png" alt="Manzanilla">
+                <img src="img/manzanilla.png" alt="Manzanilla" loading="lazy">
               </div>
               <p class="ingredient-label">MANZANILLA</p>
             </div>
@@ -370,7 +371,7 @@
           <div class="ingredient-item ingredient-item--6">
             <div class="ingredient-card">
               <div class="ingredient-image">
-                <img src="img/piel-naranja-limon.png" alt="Piel de Naranja y Limón">
+                <img src="img/piel-naranja-limon.png" alt="Piel de Naranja y Limón" loading="lazy">
               </div>
               <p class="ingredient-label">PIEL DE NARANJA Y LIMÓN</p>
             </div>
@@ -577,6 +578,6 @@
   </script>
 
   <!-- Main Script (GSAP animations) -->
-  <script src="main.js"></script>
+  <script defer src="main.js"></script>
 </body>
 </html>
