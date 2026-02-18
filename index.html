@@ -8,6 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="preload" href="three.min.js" as="script" />
+  <!-- Three.js & Loaders - Deferred loading -->
+  <script defer src="three.min.js"></script>
+  <script defer src="GLTFLoader.js"></script>
+  <script defer src="DRACOLoader.js"></script>
 </head>
 <body>
   <div class="cursor" aria-hidden="true"></div>
@@ -100,9 +105,7 @@
 
     <section class="bottle-section" id="bottle">
       <div class="bottle-section__canvas-wrapper">
-        <video class="bottle-3d-media" autoplay muted loop playsinline preload="metadata" aria-label="Video de botella">
-          <source src="bottlevideo.mp4" type="video/mp4" />
-        </video>
+        <canvas id="bottle3d" class="bottle-3d-canvas"></canvas>
         <div class="bottle-3d-halo" aria-hidden="true"></div>
         <div class="bottle-3d-halo bottle-3d-halo--secondary" aria-hidden="true"></div>
         <div class="bottle-3d-particles" aria-hidden="true">
@@ -212,6 +215,141 @@
             <h3 class="premium-subtitle premium-subtitle--right">
               <span class="word">LA</span>
               <span class="word word--accent">PENUMBRA</span>
+              <span class="word word--outline">DEL</span>
+              <span class="word word--glow">BOSQUE</span>
+            </h3>
+            <p class="premium-copy premium-copy--right">
+              <span class="copy-word">Notas</span>
+              <span class="copy-word copy-word--glow">verdes,</span>
+              <span class="copy-word copy-word--accent">musgo</span>
+              <span class="copy-word copy-word--outline">oscuro</span>
+              <span class="copy-word">y</span>
+              <span class="copy-word">una</span>
+              <span class="copy-word">calma</span>
+              <span class="copy-word">que</span>
+              <span class="copy-word">sugiere</span>
+              <span class="copy-word">tiempo.</span>
+              <span class="copy-word">El</span>
+              <span class="copy-word copy-word--glow">misterio</span>
+              <span class="copy-word">nace</span>
+              <span class="copy-word">en</span>
+              <span class="copy-word">silencio.</span>
+            </p>
+          </div>
+        </article>
+
+        <div class="premium-quote">
+          <span class="quote-word">EL</span>
+          <span class="quote-word quote-word--accent">SILENCIO</span>
+          <span class="quote-word quote-word--outline">TAMBIÉN</span>
+          <span class="quote-word">SE</span>
+          <span class="quote-word quote-word--glow">BEBE.</span>
+        </div>
+
+        <div class="editorial__scene scene--fullscreen">
+          <div class="editorial__media fullscreen-media" data-depth="0.06">
+            <img src="kreu4.jpg" alt="Luz sobre botanicos" loading="lazy" />
+            <span class="editorial__veil"></span>
+          </div>
+          <div class="editorial__overlay-text">
+            <h3 class="premium-subtitle premium-subtitle--left">
+              <span class="word word--outline">UN</span>
+              <span class="word word--accent">PLANO</span>
+              <span class="word word--glow">EXTENDIDO</span>
+            </h3>
+            <p class="premium-copy premium-copy--left">
+              <span class="copy-word">La</span>
+              <span class="copy-word copy-word--glow">luz</span>
+              <span class="copy-word">cae</span>
+              <span class="copy-word">despacio.</span>
+              <span class="copy-word">El</span>
+              <span class="copy-word copy-word--accent">perfil</span>
+              <span class="copy-word copy-word--outline">herbal</span>
+              <span class="copy-word">se</span>
+              <span class="copy-word">abre</span>
+              <span class="copy-word">y</span>
+              <span class="copy-word">se</span>
+              <span class="copy-word">queda,</span>
+              <span class="copy-word">como</span>
+              <span class="copy-word">un</span>
+              <span class="copy-word copy-word--glow">recuerdo</span>
+              <span class="copy-word copy-word--accent">europeo.</span>
+            </p>
+          </div>
+        </div>
+
+        <div class="premium-quote premium-quote--xl">
+          <span class="quote-word quote-word--outline">NADA</span>
+          <span class="quote-word">ES</span>
+          <span class="quote-word">CASUAL.</span>
+          <span class="quote-word quote-word--accent">TODO</span>
+          <span class="quote-word">ES</span>
+          <span class="quote-word quote-word--glow">HERBAL.</span>
+        </div>
+
+        <article class="editorial__scene scene--closing">
+          <div class="editorial__media clip-animate clip-e drift-x tilt-left" data-depth="0.12" data-drift="-40" data-rotate="2">
+            <img src="kreu1.jpg" alt="Textura" loading="lazy" />
+            <span class="editorial__veil"></span>
+            <span class="editorial__sweep"></span>
+          </div>
+          <div class="editorial__text">
+            <h3 class="premium-subtitle premium-subtitle--center">
+              <span class="word word--accent">FINAL</span>
+              <span class="word word--outline">LARGO,</span>
+              <span class="word word--glow">MEMORIA</span>
+              <span class="word">VIVA</span>
+            </h3>
+            <p class="premium-copy premium-copy--center">
+              <span class="copy-word">Una</span>
+              <span class="copy-word">estética</span>
+              <span class="copy-word copy-word--glow">sobria</span>
+              <span class="copy-word">que</span>
+              <span class="copy-word">respira.</span>
+              <span class="copy-word copy-word--outline">Oscura,</span>
+              <span class="copy-word copy-word--accent">herbal,</span>
+              <span class="copy-word copy-word--glow">inolvidable.</span>
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="ingredients-section" id="botanicos">
+      <h2 class="premium-title premium-title--center">
+        <span class="word">BOTÁNICOS</span>
+        <span class="word word--accent">SELECCIONADOS</span>
+      </h2>
+
+      <div class="ingredients-drift-container">
+        <div class="ingredients-drift-track" id="ingredientsDriftTrack">
+          <div class="ingredient-item ingredient-item--1">
+            <div class="ingredient-card">
+              <div class="ingredient-image">
+                <img src="img/anis-estrellado.png" alt="Anis Estrellado" loading="lazy">
+              </div>
+              <p class="ingredient-label">ANÍS ESTRELLADO</p>
+            </div>
+          </div>
+
+          <div class="ingredient-item ingredient-item--2">
+            <div class="ingredient-card">
+              <div class="ingredient-image">
+                <img src="img/hierba-menta.png" alt="Hierba de Menta" loading="lazy">
+              </div>
+              <p class="ingredient-label">HIERBA DE MENTA</p>
+            </div>
+          </div>
+
+          <div class="ingredient-item ingredient-item--3">
+            <div class="ingredient-card">
+              <div class="ingredient-image">
+                <img src="img/regaliz.png" alt="Regaliz" loading="lazy">
+              </div>
+              <p class="ingredient-label">REGALIZ</p>
+            </div>
+          </div>
+
           <div class="ingredient-item ingredient-item--4">
             <div class="ingredient-card">
               <div class="ingredient-image">
