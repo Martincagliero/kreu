@@ -539,9 +539,9 @@
             bottle.traverse((child) => {
               if (child.isMesh) {
                 if (child.material) {
-                  child.material.metalness = isMobile ? 0.95 : 0.95;
-                  child.material.roughness = isMobile ? 0.15 : 0.1;
-                  child.material.envMapIntensity = isMobile ? 1.5 : 2.0;
+                  child.material.metalness = 1.0;
+                  child.material.roughness = 0.08;
+                  child.material.envMapIntensity = isMobile ? 2.0 : 2.5;
                   child.material.needsUpdate = true;
                 }
               }
