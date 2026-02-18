@@ -2729,8 +2729,8 @@ section {
 
 .copy-word--outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(245, 243, 238, 0.85);
-  text-stroke: 1px rgba(245, 243, 238, 0.85);
+  -webkit-text-stroke: 1px rgba(26, 77, 58, 0.85);
+  text-stroke: 1px rgba(26, 77, 58, 0.85);
   font-weight: 600;
 }
 
@@ -2761,9 +2761,9 @@ section {
 
 .quote-word--outline {
   color: transparent;
-  -webkit-text-stroke: 3px rgba(245, 243, 238, 0.9);
-  text-stroke: 3px rgba(245, 243, 238, 0.9);
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+  -webkit-text-stroke: 3px rgba(26, 77, 58, 0.9);
+  text-stroke: 3px rgba(26, 77, 58, 0.9);
+  text-shadow: 0 0 30px rgba(26, 77, 58, 0.4);
 }
 
 .quote-word--glow {
