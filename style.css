@@ -3138,3 +3138,41 @@ section {
     letter-spacing: 0.6px;
   }
 }
+
+@media (max-width: 480px) {
+  .ingredients-drift-container {
+    padding: 0 16px;
+  }
+
+  .ingredients-drift-track {
+    gap: 24px;
+  }
+
+  .ingredient-item {
+    width: 120px;
+  }
+
+  .ingredient-item--1,
+  .ingredient-item--3,
+  .ingredient-item--5 {
+    margin-top: 8px;
+  }
+
+  .ingredient-item--2,
+  .ingredient-item--4,
+  .ingredient-item--6 {
+    margin-top: 12px;
+  }
+
+  .ingredient-image {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+  }
+
+  .ingredient-label {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+  }
+}
