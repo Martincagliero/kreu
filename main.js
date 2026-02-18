@@ -745,6 +745,48 @@ const initGSAPAnimations = () => {
       }
     }
   });
+
+  // Carrusel Circular Infinito - Doble rotación para mejor performance visual
+  const ingredientCarousel = document.getElementById("ingredientCarousel");
+  if (ingredientCarousel) {
+    // Animación GSAP contínua (reemplaza CSS animation para mejor control)
+    gsap.to(ingredientCarousel, {
+      rotation: 360,
+      duration: 40,
+      repeat: -1,
+      ease: "none",
+      transformOrigin: "50% 50%"
+    });
+
+    // Efecto visual cuando el usuario ve la sección
+    gsap.from(ingredientCarousel, {
+      opacity: 0,
+      scale: 0.95,
+      duration: 1.2,
+      scrollTrigger: {
+        trigger: ".ingredients-section",
+        start: "top 70%",
+        once: true,
+        markers: false
+      }
+    });
+
+    // Controlar pausa al hover en contenedor padre
+    const carouselWrapper = document.querySelector(".carousel-wrapper");
+    if (carouselWrapper) {
+      carouselWrapper.addEventListener("mouseenter", () => {
+        gsap.to(ingredientCarousel, {
+          duration: 0.4,
+          ease: "power2.inOut"
+        });
+        gsap.getTweensOf(ingredientCarousel)[0]?.pause();
+      });
+
+      carouselWrapper.addEventListener("mouseleave", () => {
+        gsap.getTweensOf(ingredientCarousel)[0]?.resume();
+      });
+    }
+  }
   } // Cierre de if (window.gsap)
 }; // Cierre de initGSAPAnimations
 
