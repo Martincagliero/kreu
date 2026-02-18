@@ -695,31 +695,16 @@ const initGSAPAnimations = () => {
   });
 
   // Animación continua de glow en palabras con --glow
-  gsap.to(".word--glow, .copy-word--glow, .quote-word--glow", {
-    textShadow: "0 0 30px rgba(42, 79, 60, 1), 0 0 60px rgba(42, 79, 60, 0.8), 0 0 90px rgba(42, 79, 60, 0.5)",
-    duration: 2,
-    ease: "sine.inOut",
-    repeat: -1,
-    yoyo: true
-  });
+  // REMOVED: Infinite animations causing text color shifts
+  // gsap.to(".word--glow, .copy-word--glow, .quote-word--glow", { ... });
 
   // Animación continua de shimmer en palabras accent
-  gsap.to(".word--accent, .copy-word--accent, .quote-word--accent", {
-    textShadow: "0 0 50px rgba(255, 122, 0, 0.9), 0 0 100px rgba(255, 122, 0, 0.6)",
-    duration: 2.5,
-    ease: "sine.inOut",
-    repeat: -1,
-    yoyo: true
-  });
+  // REMOVED: Infinite animations causing text color shifts
+  // gsap.to(".word--accent, .copy-word--accent, .quote-word--accent", { ... });
 
   // Animación sutil de pulse en palabras outline
-  gsap.to(".word--outline, .copy-word--outline, .quote-word--outline", {
-    textShadow: "0 0 35px rgba(255, 255, 255, 0.6)",
-    duration: 3,
-    ease: "sine.inOut",
-    repeat: -1,
-    yoyo: true
-  });
+  // REMOVED: Infinite animations causing text color shifts
+  // gsap.to(".word--outline, .copy-word--outline, .quote-word--outline", { ... });
 
   // Scroll-based intensity para fondos de sección
   gsap.to(".bottle-section::before", {
