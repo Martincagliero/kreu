@@ -529,9 +529,9 @@
         }
 
         loader.load(
-          'bottle-v1.glb',
+          'bottle-v1-optimized.glb',
           (gltf) => {
-            console.log('✅ bottle-v1.glb loaded successfully');
+            console.log('✅ bottle-v1-optimized.glb (DRACO compressed) loaded successfully');
             const bottle = gltf.scene;
             bottle.scale.set(1.05, 1.05, 1.05);
             bottle.position.set(0, 0.45, 0);
@@ -575,7 +575,7 @@
             console.log(`📥 Loading: ${percent}%`);
           },
           (error) => {
-            console.error('❌ Error loading bottle-v1.glb:', error);
+            console.error('❌ Error loading bottle-v1-optimized.glb:', error);
           }
         );
 
