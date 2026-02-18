@@ -684,6 +684,16 @@ section {
   display: block;
   border-radius: 20px;
   filter: drop-shadow(0 60px 100px rgba(0, 0, 0, 0.8));
+  animation: rotate360 20s linear infinite;
+}
+
+@keyframes rotate360 {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
 }
 
 /* 3D Bottle Halos */
