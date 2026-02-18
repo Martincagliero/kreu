@@ -528,57 +528,6 @@
           console.log('✅ DRACOLoader configured');
         }
 
-        loader.load(
-          'bottle-v1-optimized.glb',
-          (gltf) => {
-            console.log('✅ bottle-v1-optimized.glb (DRACO compressed) loaded successfully');
-            const bottle = gltf.scene;
-            bottle.scale.set(1.05, 1.05, 1.05);
-            bottle.position.set(0, 0.45, 0);
-            
-            bottle.traverse((child) => {
-              if (child.isMesh) {
-                if (child.material) {
-                  child.material.metalness = 1.0;
-                  child.material.roughness = 0.08;
-                  child.material.envMapIntensity = isMobile ? 3.2 : 3.8;
-                  child.material.needsUpdate = true;
-                }
-              }
-            });
-            
-            scene.add(bottle);
-            
-            let isAnimating = true;
-            
-            function animateBottle() {
-              if (isAnimating) {
-                bottle.rotation.y += 0.005;
-                renderer.render(scene, camera);
-                requestAnimationFrame(animateBottle);
-              }
-            }
-            animateBottle();
-            
-            if (typeof gsap !== 'undefined') {
-              gsap.to(bottle.rotation, {
-                y: bottle.rotation.y + Math.PI * 2,
-                duration: 15,
-                repeat: -1,
-                ease: 'none'
-              });
-              console.log('✅ GSAP 3D animation applied');
-            }
-          },
-          (progress) => {
-            const percent = Math.round((progress.loaded / progress.total) * 100);
-            console.log(`📥 Loading: ${percent}%`);
-          },
-          (error) => {
-            console.error('❌ Error loading bottle-v1-optimized.glb:', error);
-          }
-        );
-
         window.addEventListener('resize', () => {
           const width = canvas.clientWidth;
           const height = canvas.clientHeight;
