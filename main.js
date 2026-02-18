@@ -746,46 +746,63 @@ const initGSAPAnimations = () => {
     }
   });
 
-  // Carrusel Circular Infinito - Doble rotación para mejor performance visual
-  const ingredientCarousel = document.getElementById("ingredientCarousel");
-  if (ingredientCarousel) {
-    // Animación GSAP contínua (reemplaza CSS animation para mejor control)
-    gsap.to(ingredientCarousel, {
-      rotation: 360,
-      duration: 40,
+  // Animación Drift Horizontal Infinita - Ingredientes
+  const driftTrack = document.getElementById("ingredientsDriftTrack");
+  if (driftTrack) {
+    // Calcular el ancho total del track
+    const trackWidth = driftTrack.offsetWidth;
+    const containerWidth = driftTrack.parentElement.offsetWidth;
+    
+    // Animación GSAP: drift lento y suave
+    gsap.to(driftTrack, {
+      x: -trackWidth + containerWidth,
+      duration: 120,
       repeat: -1,
       ease: "none",
-      transformOrigin: "50% 50%"
+      onComplete: () => {
+        // Reset suave cuando completa un ciclo
+        gsap.set(driftTrack, { x: 0 });
+      }
     });
 
-    // Efecto visual cuando el usuario ve la sección
-    gsap.from(ingredientCarousel, {
+    // Entrada suave desde cero
+    gsap.from(driftTrack, {
       opacity: 0,
-      scale: 0.95,
+      x: -40,
       duration: 1.2,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: ".ingredients-section",
-        start: "top 70%",
+        start: "top 65%",
         once: true,
         markers: false
       }
     });
 
-    // Controlar pausa al hover en contenedor padre
-    const carouselWrapper = document.querySelector(".carousel-wrapper");
-    if (carouselWrapper) {
-      carouselWrapper.addEventListener("mouseenter", () => {
-        gsap.to(ingredientCarousel, {
-          duration: 0.4,
-          ease: "power2.inOut"
-        });
-        gsap.getTweensOf(ingredientCarousel)[0]?.pause();
+    // Control: pausa/resume en hover
+    const driftContainer = document.querySelector(".ingredients-drift-container");
+    if (driftContainer) {
+      driftContainer.addEventListener("mouseenter", () => {
+        gsap.getTweensOf(driftTrack).forEach(tween => tween.pause());
       });
 
-      carouselWrapper.addEventListener("mouseleave", () => {
-        gsap.getTweensOf(ingredientCarousel)[0]?.resume();
+      driftContainer.addEventListener("mouseleave", () => {
+        gsap.getTweensOf(driftTrack).forEach(tween => tween.resume());
       });
     }
+
+    // Re-calcular en resize
+    window.addEventListener("resize", () => {
+      const newTrackWidth = driftTrack.offsetWidth;
+      const newContainerWidth = driftTrack.parentElement.offsetWidth;
+      
+      gsap.to(driftTrack, {
+        x: -newTrackWidth + newContainerWidth,
+        duration: 120,
+        repeat: -1,
+        ease: "none"
+      });
+    });
   }
   } // Cierre de if (window.gsap)
 }; // Cierre de initGSAPAnimations
