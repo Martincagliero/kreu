@@ -348,7 +348,7 @@ button {
   position: absolute;
   top: 130px;
   left: 50%;
-  transform: translateX(-50%) scale(0.85);
+  transform: translateX(-50%);
   z-index: 2;
   opacity: 0;
   pointer-events: none;
@@ -356,7 +356,7 @@ button {
 }
 
 .hero__brand-logo img {
-  width: clamp(800px, 60vw, 1200px);
+  width: clamp(600px, 50vw, 1000px);
   height: auto;
   display: block;
   filter: drop-shadow(0 12px 35px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 35px rgba(255, 122, 0, 0.45)) drop-shadow(0 0 70px rgba(255, 122, 0, 0.25));
