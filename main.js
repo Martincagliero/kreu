@@ -406,6 +406,8 @@ const initGSAPAnimations = () => {
   });
 
   // Enhanced media animations with parallax
+  const isMobileDevice = window.innerWidth < 768;
+  
   gsap.utils.toArray(".editorial__media, .fullscreen-media").forEach((media) => {
     const img = media.querySelector("img");
     const veil = media.querySelector(".editorial__veil");
@@ -414,11 +416,12 @@ const initGSAPAnimations = () => {
     const drift = Number(media.dataset.drift || 0);
     const rotate = Number(media.dataset.rotate || 0);
 
+    // Animation de entrada (siempre se aplica)
     gsap.from(media, {
       opacity: 0,
       y: 36,
       scale: 0.98,
-      rotate: rotate,
+      rotate: isMobileDevice ? 0 : rotate,
       duration: 1.3,
       ease: "power4.out",
       scrollTrigger: {
@@ -457,7 +460,8 @@ const initGSAPAnimations = () => {
       });
     }
 
-    if (img) {
+    // Solo aplica parallax en desktop
+    if (img && !isMobileDevice) {
       gsap.to(img, {
         y: -80 * depth,
         scale: 1.05,
@@ -471,7 +475,8 @@ const initGSAPAnimations = () => {
       });
     }
 
-    if (drift) {
+    // Solo aplica drift en desktop
+    if (drift && !isMobileDevice) {
       gsap.to(media, {
         x: drift,
         ease: "none",
@@ -484,20 +489,24 @@ const initGSAPAnimations = () => {
       });
     }
 
-    gsap.fromTo(media, {
-      scale: 0.98
-    }, {
-      scale: 1,
-      ease: "none",
-      scrollTrigger: {
-        trigger: media,
-        start: "top bottom",
-        end: "bottom center",
-        scrub: true
-      }
-    });
+    // Solo aplica scale parallax en desktop
+    if (!isMobileDevice) {
+      gsap.fromTo(media, {
+        scale: 0.98
+      }, {
+        scale: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: media,
+          start: "top bottom",
+          end: "bottom center",
+          scrub: true
+        }
+      });
+    }
 
-    if (media.classList.contains("clip-animate")) {
+    // Clip-path solo en desktop (demasiado pesado en mobile)
+    if (media.classList.contains("clip-animate") && !isMobileDevice) {
       const targetClip = getComputedStyle(media).clipPath;
       if (targetClip === "none") {
         return;

@@ -1685,6 +1685,9 @@ section {
 
 .editorial__media {
   min-height: clamp(260px, 46vh, 520px);
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .editorial__media img,
@@ -1747,6 +1750,18 @@ section {
 .clip-e {
   clip-path: polygon(0 6%, 96% 0, 100% 94%, 6% 100%);
 }
+
+/* Mobile optimization - disable clip-path animations */
+@media (max-width: 768px) {
+  .clip-a,
+  .clip-b,
+  .clip-c,
+  .clip-d,
+  .clip-e {
+    clip-path: none;
+  }
+}
+
 .editorial__phrase {
   text-align: center;
   font-size: clamp(14px, 2vw, 20px);
