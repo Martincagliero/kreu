@@ -133,7 +133,14 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('loaded').style.display = 'block';
 
-            gsap.to(bottle.rotation, {
+            // Buscar la malla de la botella específica, no el contenedor completo
+            let bottleMesh = bottle;
+            if (bottle.children && bottle.children.length > 0) {
+              bottleMesh = bottle.children[0];
+              console.log('Rotando solo la malla de la botella:', bottleMesh);
+            }
+
+            gsap.to(bottleMesh.rotation, {
               y: Math.PI * 2,
               duration: 6,
               repeat: -1,
