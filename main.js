@@ -74,10 +74,7 @@ window.addEventListener("mouseleave", () => {
   cursor.style.opacity = "0";
 });
 
-// ===== 3D BOTTLE INITIALIZATION =====
-// ⚠️ REMOVED: All Three.js initialization moved to index.html window.load()
-// This prevents conflicts and ensures proper CDN loading order
-// main.js now handles ONLY GSAP animations for non-3D elements
+// Removed: All 3D-related code and Three.js dependencies
 
 const hero = document.querySelector(".hero");
 window.addEventListener("scroll", () => {
@@ -170,39 +167,6 @@ const initGSAPAnimations = () => {
       }
     });
   });
-
-  // Bottle section - Advanced animations
-  // Halo double-layer intensity with scroll
-  gsap.to(".bottle-3d-halo, .bottle-3d-halo--secondary", {
-    scrollTrigger: {
-      trigger: ".bottle-section",
-      start: "top 50%",
-      end: "bottom 50%",
-      scrub: 1.5,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const pulseIntensity = 0.4 + Math.sin(progress * Math.PI * 2) * 0.35;
-        gsap.set(".bottle-3d-halo", {
-          opacity: pulseIntensity * 0.6
-        });
-        gsap.set(".bottle-3d-halo--secondary", {
-          opacity: pulseIntensity * 0.3
-        });
-      }
-    }
-  });
-
-  // Bottle light reflection flow synced with scroll
-  // ⚠️ REMOVED: .bottle-light-reflection element doesn't exist in HTML
-  // The 3D bottle animation is handled by Three.js in index.html
-
-  // Bottle breathing levitation synced with scroll
-  // ⚠️ REMOVED: .bottle-img element doesn't exist in HTML
-  // The 3D bottle animation is handled by Three.js in index.html
-
-  // Extended breathing animation (time-based)
-  // ⚠️ REMOVED: .bottle-img element doesn't exist in HTML
-  // The 3D bottle animation is handled by Three.js in index.html
 
   // Keyword glow enhancement
   gsap.to(".keyword-glow", {

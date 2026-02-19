@@ -696,44 +696,18 @@ section {
 }
 
 /* 3D Bottle Halos */
-.bottle-3d-halo {
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(255, 122, 0, 0.25), transparent);
-  border-radius: 50%;
-  filter: blur(80px);
-  animation: bottle3DHaloPulse 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
-.bottle-3d-halo--secondary {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255, 122, 0, 0.2), transparent);
-  animation: bottle3DHaloPulseSlow 8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
-  filter: blur(100px);
-  opacity: 1;
-}
 
-@keyframes bottle3DHaloPulse {
-  0%, 100% {
-    opacity: 0.4;
-    transform: translate(-50%, -50%) scale(0.95);
-  }
+
+
+
   50% {
     opacity: 0.8;
     transform: translate(-50%, -50%) scale(1.05);
   }
 }
 
-@keyframes bottle3DHaloPulseSlow {
-  0%, 100% {
-    opacity: 0.3;
-    transform: translate(-50%, -50%) scale(1);
-  }
+
   50% {
     opacity: 0.6;
     transform: translate(-50%, -50%) scale(1.1);
@@ -741,37 +715,20 @@ section {
 }
 
 /* 3D Bottle Particles */
-.bottle-3d-particles {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  inset: 0;
-  z-index: 2;
-}
 
-.bottle-3d-particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(255, 200, 100, 0.95);
-  border-radius: 50%;
-  filter: blur(0.5px) drop-shadow(0 0 6px rgba(255, 122, 0, 0.9));\n  animation: bottle3DParticleFloat 8s ease-in-out infinite;
-}
 
-.bottle-3d-particle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
-.bottle-3d-particle:nth-child(2) { top: 30%; right: 20%; animation-delay: 1s; }
-.bottle-3d-particle:nth-child(3) { top: 50%; left: 25%; animation-delay: 2s; }
-.bottle-3d-particle:nth-child(4) { bottom: 30%; right: 15%; animation-delay: 3s; }
-.bottle-3d-particle:nth-child(5) { top: 40%; left: 40%; animation-delay: 4s; }
-.bottle-3d-particle:nth-child(6) { bottom: 20%; left: 30%; animation-delay: 5s; }
-.bottle-3d-particle:nth-child(7) { top: 60%; right: 35%; animation-delay: 6s; }
-.bottle-3d-particle:nth-child(8) { bottom: 40%; right: 20%; animation-delay: 7s; }
 
-@keyframes bottle3DParticleFloat {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0.2;
-  }
+
+
+
+
+
+
+
+
+
+
+
   25% {
     transform: translateY(-30px) translateX(15px);
     opacity: 0.6;
@@ -787,24 +744,9 @@ section {
 }
 
 /* Light Stream */
-.bottle-3d-light-stream {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200px;
-  height: 800px;
-  background: linear-gradient(to bottom, rgba(255, 180, 100, 0.1), rgba(255, 122, 0, 0.05), transparent);
-  filter: blur(40px);
-  transform: translate(-50%, -50%);
-  animation: bottle3DLightStreamFlow 5s ease-in-out infinite;
-  pointer-events: none;
-}
 
-@keyframes bottle3DLightStreamFlow {
-  0%, 100% {
-    opacity: 0.2;
-    transform: translate(-50%, -50%) scaleY(0.9);
-  }
+
+
   50% {
     opacity: 0.6;
     transform: translate(-50%, -50%) scaleY(1.1);
@@ -2373,15 +2315,7 @@ section {
     height: 500px;
   }
 
-  .bottle-3d-halo {
-    width: 400px;
-    height: 400px;
-  }
 
-  .bottle-3d-halo--secondary {
-    width: 500px;
-    height: 500px;
-  }
 
   .editorial__scene {
     grid-template-columns: repeat(6, 1fr);
@@ -2446,67 +2380,47 @@ section {
   }
 
   section {
-    padding: 80px 6vw;
+    padding: 60px 16px;
   }
 
   .hero {
-    padding: 100px 12px 60px;
-  }
-
-  .bottle-section {
-    grid-template-columns: 1fr;
-    gap: 30px;
-    padding: 60px 20px;
-  }
-
-  .bottle-section__canvas-wrapper {
-    height: 350px;
-  }
-
-  .bottle-3d-halo {
-    width: 300px;
-    height: 300px;
-    filter: blur(60px);
-  }
-
-  .bottle-3d-halo--secondary {
-    width: 380px;
-    height: 380px;
-    filter: blur(80px);
-  }
-
-  .bottle-3d-particle {
-    width: 1.5px;
-    height: 1.5px;
-  }
-
-  .bottle-3d-light-stream {
-    width: 150px;
-    height: 500px;
-  }
-
-  .hero__title {
-    font-size: clamp(32px, 7vw, 58px);
+    padding: 80px 16px 60px;
   }
 
   .hero__content {
-    padding-top: 320px;
-    padding-bottom: 80px;
-    gap: 35px;
+    padding-top: 200px;
+    padding-bottom: 60px;
+    gap: 20px;
+  }
+
+  .hero__title {
+    font-size: clamp(28px, 8vw, 48px);
+    line-height: 1.4;
   }
 
   .hero__text {
-    font-size: 16px;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 0;
   }
 
   .btn {
-    padding: 13px 34px;
-    font-size: 13px;
+    padding: 14px 28px;
+    font-size: 12px;
+    width: auto;
+    min-width: 160px;
+    letter-spacing: 1.5px;
   }
 
   .navbar__inner {
-    padding: 14px 16px;
-    gap: 8px;
+    padding: 12px 16px;
+    gap: 6px;
   }
 
   .nav {
@@ -2519,30 +2433,199 @@ section {
 
   .bottle-section {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 30px;
+    padding: 50px 16px;
   }
 
-  .bottle-stage {
-    width: 100%;
+  .bottle-section__canvas-wrapper {
+    height: 280px;
   }
 
-  .bottle-container {
-    width: 100% !important;
-    max-width: 280px;
-    height: 320px;
+  .bottle-section__text {
+    padding: 0;
   }
 
-  .bottle-img {
-    max-width: 200px;
+  .premium-title {
+    font-size: clamp(18px, 6vw, 28px);
+    margin-bottom: 16px;
+  }
+
+  .premium-copy {
+    font-size: 14px;
+    line-height: 1.6;
   }
 
   .section-title {
-    font-size: clamp(20px, 4vw, 32px);
+    font-size: clamp(20px, 5vw, 32px);
+    margin-bottom: 10px;
   }
 
   .editorial {
-    padding: 100px 6vw 150px;
+    padding: 60px 16px 100px;
   }
+
+  .editorial__intro {
+    margin-bottom: 60px;
+  }
+
+  .editorial__scene {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .scene__title {
+    font-size: clamp(18px, 5vw, 26px);
+    margin-bottom: 10px;
+  }
+
+  .scene__description {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .editorial__media {
+    min-height: 240px;
+    margin: 0 !important;
+  }
+
+  .editorial__text {
+    grid-column: 1 / -1 !important;
+  }
+
+  .editorial__fragment {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .fragment__piece {
+    grid-column: 1 !important;
+    min-height: 200px;
+    margin-top: 0 !important;
+  }
+
+  .fragment__text {
+    grid-column: 1 !important;
+    margin-top: 4px;
+  }
+
+  .fragment__text h3 {
+    font-size: clamp(16px, 5vw, 22px);
+    margin-bottom: 8px;
+  }
+
+  .fragment__text p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .ritual {
+    padding: 60px 16px;
+  }
+
+  .ritual__content {
+    max-width: 100%;
+  }
+
+  .ritual__content p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .contact {
+    padding: 60px 16px 80px;
+  }
+
+  .contact__title {
+    font-size: clamp(24px, 6vw, 36px);
+    margin-bottom: 12px;
+  }
+
+  .contact__subtitle {
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+  }
+
+  .contact__buttons {
+    flex-direction: column;
+    gap: 12px;
+    gap: 12px;
+  }
+
+  .contact__btn {
+    width: 100%;
+    max-width: none;
+    padding: 14px 20px;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .footer {
+    padding: 30px 16px 40px;
+  }
+
+  .footer__content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+  
+  .footer__credit {
+    align-items: center;
+  }
+  
+  .footer__main {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  
+  .footer__credit-label {
+    font-size: 8px;
+    letter-spacing: 1.5px;
+  }
+  
+  .footer__credit-studio {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  /* Disable heavy animations on mobile */
+  .hero__line {
+    animation-duration: 0.5s !important;
+  }
+
+  .hero__glow {
+    display: none;
+  }
+
+  .reflection {
+    display: none;
+  }
+
+  .hero__light-reflections {
+    display: none;
+  }
+
+  /* Reduce filter effects on mobile */
+  .bottle-3d-canvas {
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+  }
+
+  /* Simplify editorial animations */
+  .editorial__scene {
+    animation-duration: 0.6s !important;
+  }
+
+  .keyword-glow {
+    animation-duration: 1.5s !important;
+  }
+
+  /* Simpler particle animations */
+  .bottle-particle {
+    display: none;
+  }
+}
 
   .ritual {
     padding: 100px 6vw;
@@ -3216,3 +3299,5 @@ section {
     letter-spacing: 0.5px;
   }
 }
+
+
