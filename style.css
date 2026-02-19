@@ -687,12 +687,29 @@ section {
   perspective: 1200px;
 }
 
+.bottle-section__canvas-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 480px;
+  background: radial-gradient(circle, rgba(107, 122, 74, 0.08) 0%, rgba(107, 122, 74, 0.04) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  z-index: 0;
+  pointer-events: none;
+}
+
 .bottle-3d-canvas {
   width: 100%;
   height: 100%;
   display: block;
   border-radius: 20px;
   filter: drop-shadow(0 60px 100px rgba(0, 0, 0, 0.8));
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes rotate360 {
@@ -707,8 +724,8 @@ section {
 
 
 .bottle-section__text p {
-  color: var(--muted);
-  line-height: 1.7;
+  color: rgba(245, 243, 238, 0.88);
+  line-height: 1.8;
 }
 
 .bottle-stage {
@@ -2651,6 +2668,24 @@ section {
   padding-left: 5vw;
 }
 
+.bottle-section .premium-title--left {
+  font-weight: 700;
+  letter-spacing: 2px;
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.bottle-section .premium-title--left::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 5vw;
+  width: 60px;
+  height: 1px;
+  background: rgba(107, 122, 74, 0.5);
+  border-radius: 1px;
+}
+
 .premium-title--center {
   text-align: center;
 }
@@ -2762,6 +2797,14 @@ section {
   filter: drop-shadow(0 0 30px rgba(255, 122, 0, 0.8));
 }
 
+.bottle-section .word--accent {
+  color: var(--herbal-accent);
+  text-shadow: 0 0 30px rgba(107, 122, 74, 0.5),
+               0 0 60px rgba(107, 122, 74, 0.3),
+               0 0 20px rgba(255, 255, 255, 0.1);
+  filter: drop-shadow(0 0 15px rgba(107, 122, 74, 0.4));
+}
+
 .word--outline {
   color: transparent;
   -webkit-text-stroke: 2px rgba(245, 243, 238, 1);
@@ -2779,6 +2822,12 @@ section {
                0 0 120px rgba(42, 79, 60, 0.7),
                0 0 160px rgba(255, 122, 0, 0.5);
   filter: drop-shadow(0 0 30px rgba(42, 79, 60, 1.0));
+}
+
+.bottle-section .word--glow {
+  text-shadow: 0 0 30px rgba(107, 122, 74, 0.5),
+               0 0 60px rgba(107, 122, 74, 0.3);
+  filter: drop-shadow(0 0 20px rgba(107, 122, 74, 0.3));
 }
 
 /* Copy Word System - Para párrafos */
@@ -2800,6 +2849,12 @@ section {
                0 0 50px rgba(255, 122, 0, 0.4);
 }
 
+.bottle-section .copy-word--accent {
+  color: var(--herbal-accent);
+  text-shadow: 0 0 15px rgba(107, 122, 74, 0.4),
+               0 0 30px rgba(107, 122, 74, 0.2);
+}
+
 .copy-word--outline {
   color: transparent;
   -webkit-text-stroke: 1px rgba(26, 77, 58, 0.85);
@@ -2813,6 +2868,11 @@ section {
   text-shadow: 0 0 20px rgba(42, 79, 60, 0.9),
                0 0 40px rgba(42, 79, 60, 0.6),
                0 0 60px rgba(42, 79, 60, 0.3);
+}
+
+.bottle-section .copy-word--glow {
+  text-shadow: 0 0 15px rgba(107, 122, 74, 0.4),
+               0 0 30px rgba(107, 122, 74, 0.2);
 }
 
 /* Quote Word System */
