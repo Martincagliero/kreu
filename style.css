@@ -2870,6 +2870,16 @@ section {
   letter-spacing: 8px;
 }
 
+.premium-quote--xl::before {
+  background-image: url('bosque.jpg');
+  opacity: 0.3;
+}
+
+.premium-quote--xl::after {
+  background: rgba(0, 0, 0, 0.5);
+  filter: saturate(0.85);
+}
+
 /* Word System - Con efectos premium */
 .word {
   display: inline-block;
