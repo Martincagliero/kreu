@@ -484,19 +484,18 @@ button {
 
 .hero__glow-line {
   position: relative;
-  color: var(--text-emphasis);
 }
 
 .hero__line--accent {
-  color: var(--accent) !important;
+  color: #ff7a00 !important;
   font-size: 1.25em;
+  font-weight: 600;
   text-shadow: 0 0 60px rgba(255, 122, 0, 1.0), 
                0 0 120px rgba(255, 122, 0, 0.7), 
                0 0 180px rgba(255, 122, 0, 0.4),
                0 0 40px rgba(255, 255, 255, 0.3);
   filter: drop-shadow(0 0 40px rgba(255, 122, 0, 0.9));
   animation: accentGlow 2.5s ease-in-out infinite;
-  font-weight: 600;
 }
 
 @keyframes accentGlow {
