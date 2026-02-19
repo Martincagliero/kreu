@@ -2,6 +2,7 @@
   --bg-main: #0b1c14;
   --bg-secondary: #10271c;
   --accent: #ff7a00;
+  --herbal-accent: #6B7A5C;
   --text: #f5f3ee;
   --muted: rgba(245, 243, 238, 0.6);
   --shadow: rgba(0, 0, 0, 0.5);
@@ -275,6 +276,7 @@ button {
   position: relative;
   color: var(--muted);
   transition: color 0.3s ease;
+  font-weight: 400;
 }
 
 .nav a::after {
@@ -283,13 +285,13 @@ button {
   left: 0;
   bottom: -6px;
   width: 0;
-  height: 1px;
-  background: var(--accent);
+  height: 1.5px;
+  background: var(--herbal-accent);
   transition: width 0.3s ease;
 }
 
 .nav a:hover {
-  color: var(--text);
+  color: var(--herbal-accent);
 }
 
 .nav a:hover::after {
@@ -297,18 +299,20 @@ button {
 }
 
 .nav-cta {
-  border: 1px solid rgba(255, 122, 0, 0.6);
+  border: 1.5px solid var(--herbal-accent);
   padding: 8px 18px;
   border-radius: 30px;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2px;
-  transition: box-shadow 0.3s ease, color 0.3s ease, border 0.3s ease;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: var(--herbal-accent);
 }
 
 .nav-cta:hover {
-  box-shadow: 0 0 12px rgba(255, 122, 0, 0.4);
-  color: var(--accent);
+  background: rgba(107, 122, 92, 0.12);
+  box-shadow: 0 0 16px rgba(107, 122, 92, 0.3);
 }
 
 .hero {
@@ -460,9 +464,10 @@ button {
 
 .hero__title {
   font-family: "Playfair Display", serif;
-  font-size: clamp(38px, 5.5vw, 70px);
-  line-height: 1.3;
-  letter-spacing: 2px;
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 1.45;
+  letter-spacing: 1.5px;
+  font-weight: 600;
 }
 
 .hero__line {
@@ -504,8 +509,9 @@ button {
   max-width: 520px;
   margin: 0 auto;
   color: var(--muted);
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.75;
+  font-weight: 300;
   opacity: 0;
   animation: fadeInUp 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s forwards;
 }
@@ -656,8 +662,11 @@ section {
 
 .section-title {
   font-family: "Playfair Display", serif;
-  font-size: clamp(28px, 3vw, 48px);
-  margin-bottom: 12px;
+  font-size: clamp(32px, 3.5vw, 52px);
+  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
 }
 
 .bottle-section {
@@ -2017,7 +2026,7 @@ section {
 
 .contact__btn {
   padding: 18px 45px;
-  border: 1.5px solid rgba(245, 243, 238, 0.25);
+  border: 1.5px solid var(--herbal-accent);
   border-radius: 8px;
   background: transparent;
   color: var(--text);
@@ -2042,16 +2051,17 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 122, 0, 0.05);
+  background: rgba(107, 122, 92, 0.08);
   opacity: 0;
   transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 1;
 }
 
 .contact__btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--herbal-accent);
+  color: var(--herbal-accent);
   transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(107, 122, 92, 0.2);
 }
 
 .contact__btn:hover::before {
@@ -2154,19 +2164,33 @@ section {
   text-transform: uppercase;
   font-size: 11px;
   letter-spacing: 4px;
-  color: rgba(245, 243, 238, 0.5);
+  color: rgba(245, 243, 238, 0.55);
   font-weight: 500;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
+  position: relative;
+}
+
+.footer__credit-studio::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--herbal-accent);
+  transition: width 0.3s ease;
 }
 
 .footer__credit-studio:hover {
-  color: var(--accent);
-  text-shadow: 0 0 15px rgba(255, 122, 0, 0.4);
+  color: var(--herbal-accent);
   letter-spacing: 5px;
-  text-decoration: none;
+}
+
+.footer__credit-studio:hover::after {
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -2338,14 +2362,16 @@ section {
   }
 
   .hero__title {
-    font-size: clamp(28px, 8vw, 48px);
+    font-size: clamp(24px, 7vw, 42px);
     line-height: 1.4;
+    letter-spacing: 1px;
   }
 
   .hero__text {
     font-size: 15px;
-    line-height: 1.6;
+    line-height: 1.7;
     max-width: 100%;
+    font-weight: 300;
   }
 
   .hero__actions {
@@ -2390,18 +2416,21 @@ section {
   }
 
   .premium-title {
-    font-size: clamp(18px, 6vw, 28px);
+    font-size: clamp(16px, 5vw, 24px);
     margin-bottom: 16px;
+    letter-spacing: 2px;
   }
 
   .premium-copy {
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-weight: 300;
   }
 
   .section-title {
-    font-size: clamp(20px, 5vw, 32px);
-    margin-bottom: 10px;
+    font-size: clamp(18px, 4.5vw, 28px);
+    margin-bottom: 12px;
+    line-height: 1.4;
   }
 
   .editorial {
@@ -2418,13 +2447,16 @@ section {
   }
 
   .scene__title {
-    font-size: clamp(18px, 5vw, 26px);
+    font-size: clamp(16px, 4vw, 22px);
     margin-bottom: 10px;
+    line-height: 1.4;
+    font-weight: 600;
   }
 
   .scene__description {
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-weight: 300;
   }
 
   .editorial__media {
@@ -2453,13 +2485,15 @@ section {
   }
 
   .fragment__text h3 {
-    font-size: clamp(16px, 5vw, 22px);
+    font-size: clamp(16px, 4vw, 22px);
     margin-bottom: 8px;
+    font-weight: 600;
   }
 
   .fragment__text p {
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.7;
+    font-weight: 300;
   }
 
   .ritual {
@@ -2472,7 +2506,8 @@ section {
 
   .ritual__content p {
     font-size: 14px;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-weight: 300;
   }
 
   .contact {
@@ -2480,8 +2515,10 @@ section {
   }
 
   .contact__title {
-    font-size: clamp(24px, 6vw, 36px);
+    font-size: clamp(20px, 5.5vw, 32px);
     margin-bottom: 12px;
+    line-height: 1.4;
+    font-weight: 600;
   }
 
   .contact__subtitle {
@@ -2492,7 +2529,6 @@ section {
 
   .contact__buttons {
     flex-direction: column;
-    gap: 12px;
     gap: 12px;
   }
 
@@ -2596,17 +2632,18 @@ section {
    PREMIUM EDITORIAL TEXT SYSTEM
    ======================================== */
 
-/* Premium Title - Gigante y Bold */
+/* Premium Title - Elegante y editorial europeo */
 .premium-title {
   font-family: "Playfair Display", serif;
   font-size: clamp(70px, 11vw, 180px);
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: 8px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 6px;
   text-transform: uppercase;
   margin-bottom: 60px;
   position: relative;
   z-index: 2;
+  font-variant-numeric: lining-nums;
 }
 
 .premium-title--left {
@@ -2623,13 +2660,13 @@ section {
   padding-right: 5vw;
 }
 
-/* Premium Subtitle - Grande y impactante */
+/* Premium Subtitle - Editorial y elegante */
 .premium-subtitle {
   font-family: "Playfair Display", serif;
   font-size: clamp(32px, 5.5vw, 72px);
   font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: 4px;
+  line-height: 1.4;
+  letter-spacing: 3px;
   text-transform: uppercase;
   margin-bottom: 30px;
   position: relative;
@@ -2652,11 +2689,12 @@ section {
   padding-right: 3vw;
 }
 
-/* Premium Copy - Texto descriptivo */
+/* Premium Copy - Cuerpo de texto refinado */
 .premium-copy {
   font-family: "Manrope", sans-serif;
-  font-size: clamp(18px, 2vw, 26px);
+  font-size: clamp(16px, 2vw, 24px);
   line-height: 1.8;
+  font-weight: 300;
   color: var(--muted);
   margin-bottom: 40px;
   max-width: 800px;
