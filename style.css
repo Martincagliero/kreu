@@ -2833,21 +2833,21 @@ section {
 }
 
 .bottle-section .word--accent {
-  color: var(--herbal-accent);
-  text-shadow: 0 0 50px rgba(107, 122, 74, 0.8),
-               0 0 100px rgba(107, 122, 74, 0.6),
-               0 0 150px rgba(107, 122, 74, 0.4),
+  color: var(--accent);
+  text-shadow: 0 0 50px rgba(255, 122, 0, 0.8),
+               0 0 100px rgba(255, 122, 0, 0.6),
+               0 0 150px rgba(255, 122, 0, 0.4),
                0 0 200px rgba(255, 255, 255, 0.2);
-  filter: drop-shadow(0 0 30px rgba(107, 122, 74, 0.8));
-  animation: accentPulse 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(255, 122, 0, 0.8));
+  animation: accentOrangePulse 2.5s ease-in-out infinite;
 }
 
-@keyframes accentPulse {
+@keyframes accentOrangePulse {
   0%, 100% {
-    filter: drop-shadow(0 0 30px rgba(107, 122, 74, 0.8)) brightness(1);
+    filter: drop-shadow(0 0 30px rgba(255, 122, 0, 0.8)) brightness(1);
   }
   50% {
-    filter: drop-shadow(0 0 60px rgba(107, 122, 74, 1.2)) brightness(1.3);
+    filter: drop-shadow(0 0 60px rgba(255, 122, 0, 1.2)) brightness(1.3);
   }
 }
 
