@@ -2514,8 +2514,7 @@ section {
   }
 
   .nav-cta {
-    padding: 6px 14px;
-    font-size: 11px;
+    display: none;
   }
 
   .bottle-section {
