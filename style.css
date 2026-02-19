@@ -2892,7 +2892,7 @@ section {
   right: 0;
   bottom: 0;
   background-image: url('hielo.jpg');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0.3;
@@ -2924,6 +2924,7 @@ section {
 
 .premium-quote--xl::before {
   background-image: url('bosque.jpg');
+  background-size: contain;
   opacity: 0.3;
 }
 
