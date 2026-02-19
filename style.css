@@ -2831,10 +2831,15 @@ section {
   letter-spacing: 6px;
   text-transform: uppercase;
   text-align: center;
-  margin: 100px auto;
-  max-width: 90%;
+  margin: 0;
+  width: 100%;
+  padding: 120px 20px;
   position: relative;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
 }
 
 .premium-quote::before {
@@ -2851,6 +2856,8 @@ section {
   opacity: 0.3;
   z-index: -2;
   pointer-events: none;
+  width: 100%;
+  height: 100%;
 }
 
 .premium-quote::after {
@@ -2863,11 +2870,14 @@ section {
   background: rgba(0, 0, 0, 0.4);
   z-index: -1;
   pointer-events: none;
+  width: 100%;
+  height: 100%;
 }
 
 .premium-quote--xl {
   font-size: clamp(60px, 10vw, 160px);
   letter-spacing: 8px;
+  min-height: 60vh;
 }
 
 .premium-quote--xl::before {
@@ -2878,6 +2888,7 @@ section {
 .premium-quote--xl::after {
   background: rgba(0, 0, 0, 0.5);
   filter: saturate(0.85);
+}
 }
 
 /* Word System - Con efectos premium */
