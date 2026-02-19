@@ -695,63 +695,7 @@ section {
   }
 }
 
-/* 3D Bottle Halos */
 
-
-
-
-
-  50% {
-    opacity: 0.8;
-    transform: translate(-50%, -50%) scale(1.05);
-  }
-}
-
-
-  50% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scale(1.1);
-  }
-}
-
-/* 3D Bottle Particles */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  25% {
-    transform: translateY(-30px) translateX(15px);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-60px) translateX(-10px);
-    opacity: 1;
-  }
-  75% {
-    transform: translateY(-30px) translateX(20px);
-    opacity: 0.6;
-  }
-}
-
-/* Light Stream */
-
-
-
-  50% {
-    opacity: 0.6;
-    transform: translate(-50%, -50%) scaleY(1.1);
-  }
-}
 
 .bottle-section__text p {
   color: var(--muted);
