@@ -2937,7 +2937,7 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 35vh;
+  min-height: 60vh;
 }
 
 .premium-quote::before {
@@ -2948,10 +2948,10 @@ section {
   right: 0;
   bottom: 0;
   background-image: url('hielo.jpg');
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.3;
+  opacity: 0.5;
   z-index: -2;
   pointer-events: none;
   width: 100%;
