@@ -2917,15 +2917,15 @@ section {
 }
 
 .premium-quote--xl {
-  font-size: clamp(42px, 7vw, 110px);
+  font-size: clamp(28px, 4vw, 60px);
   letter-spacing: 8px;
-  min-height: 45vh;
+  min-height: 60vh;
 }
 
 .premium-quote--xl::before {
   background-image: url('bosque.jpg');
-  background-size: contain;
-  opacity: 0.3;
+  background-size: cover;
+  opacity: 0.5;
 }
 
 .premium-quote--xl::after {
