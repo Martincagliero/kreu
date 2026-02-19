@@ -484,10 +484,11 @@ button {
 
 .hero__glow-line {
   position: relative;
+  color: var(--text-emphasis);
 }
 
 .hero__line--accent {
-  color: var(--accent);
+  color: var(--accent) !important;
   font-size: 1.25em;
   text-shadow: 0 0 60px rgba(255, 122, 0, 1.0), 
                0 0 120px rgba(255, 122, 0, 0.7), 
